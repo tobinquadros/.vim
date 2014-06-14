@@ -5,13 +5,13 @@
 " RUNTIME SETUP
 " ==============================================================================
 
-set nocompatible " Turn off vi compatible mode
-
 " Load plugin bundles and docs.
-runtime bundle/vim-pathogen/autoload/pathogen.vim " Make sure pathogen.vim is running.
+runtime bundle/vim-pathogen/autoload/pathogen.vim
 filetype off " Disbale before loading pathogen
 execute pathogen#infect()
 execute pathogen#helptags()
+
+set nocompatible " Turn off vi compatible mode
 
 " Turn filetype stuff back on
 if has("autocmd")
