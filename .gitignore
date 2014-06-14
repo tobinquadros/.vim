@@ -1,0 +1,5 @@
+# .gitignore for Vim repository
+
+.netrwhist
+tags
+systags
