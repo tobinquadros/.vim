@@ -23,7 +23,10 @@ function install_thru_brew() {
 function install_thru_apt() {
   # Install Vim
   sudo apt-get install -y vim
-  sudo apt-get install -y vim-gnome
+  # If X windowing is available install GUI Vim.
+  if [ ! -z $(which X) ]; then
+    sudo apt-get install -y vim-gnome
+  fi
 
   # System tools that help with C code.
   # Run :help cscope, or :help Exuberant_ctags in Vim for info.

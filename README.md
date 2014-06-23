@@ -1,6 +1,6 @@
 # Overview:
 
-My dotfiles got way too bloated. Plus my Vim configs make me happy.
+My dotfiles got way too bloated. Simple things make me happy.
 
 ## Usage:
 
