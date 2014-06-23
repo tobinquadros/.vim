@@ -32,10 +32,10 @@ function install_thru_apt() {
 }
 
 # Copy/overwrite updated Vim directory to ~/.vim for current user's configs.
-function copy_dotvim() {
-mkdir -p $HOME/.vim
-cp -R $DIR/* $HOME/.vim/
-}
+# function copy_dotvim() {
+# mkdir -p $HOME/.vim
+# cp -R $DIR/* $HOME/.vim/
+# }
 
 # ==============================================================================
 # Main
@@ -67,9 +67,9 @@ else
 fi
 
 # Timed prompt that asks about writing $HOME/.vim directory. 
-echo "Would you like to create a $HOME/.vim directory? (y/n) default = Yes"
+echo "Would you like to create a $HOME/.vim directory? (y/n) default = No"
 read -t 10
-if [ \( -z "$REPLY" \) -o \( "$REPLY" = "y" -o "$REPLY" = "Y" \) ]; then
+if [ \( "$REPLY" = "y" -o "$REPLY" = "Y" \) ]; then
   copy_dotvim
 else
   echo "Exiting without copying .vim directory."
