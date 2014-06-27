@@ -34,31 +34,31 @@ function install_thru_apt() {
   sudo apt-get install -y exuberant-ctags
 }
 
-# Copy/overwrite updated Vim directory to ~/.vim for current user's configs.
-# function copy_dotvim() {
-# mkdir -p $HOME/.vim
-# cp -R $DIR/* $HOME/.vim/
-# }
+function add_submodules() {
+  # Create bundle directory and add submodules.
+  DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+  mkdir -p $DIR/bundle
+  git submodule update --init $DIR/bundle/
+  git submodule add https://github.com/tpope/vim-pathogen.git $DIR/bundle/
+  git submodule add https://github.com/scrooloose/syntastic.git $DIR/bundle/
+  git submodule add https://github.com/majutsushi/tagbar.git $DIR/bundle/
+  git submodule add https://github.com/tpope/vim-commentary.git $DIR/bundle/
+  git submodule add https://github.com/tpope/vim-markdown.git $DIR/bundle/
+  git submodule add https://github.com/tpope/vim-repeat.git $DIR/bundle/
+  git submodule add https://github.com/tpope/vim-surround.git $DIR/bundle/
+  git submodule add https://github.com/tpope/vim-unimpaired.git $DIR/bundle/
+
+  # Pull the submodules down.
+  git submodule foreach git pull origin master
+}
+
+function clean_up() {
+  echo "I'm done, goodbye!"
+}
 
 # ==============================================================================
 # Main
 # ==============================================================================
-
-# Create bundle directory and add submodules.
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-mkdir -p $DIR/bundle
-git submodule update --init $DIR/bundle/
-git submodule add https://github.com/tpope/vim-pathogen.git $DIR/bundle/
-git submodule add https://github.com/scrooloose/syntastic.git $DIR/bundle/
-git submodule add https://github.com/majutsushi/tagbar.git $DIR/bundle/
-git submodule add https://github.com/tpope/vim-commentary.git $DIR/bundle/
-git submodule add https://github.com/tpope/vim-markdown.git $DIR/bundle/
-git submodule add https://github.com/tpope/vim-repeat.git $DIR/bundle/
-git submodule add https://github.com/tpope/vim-surround.git $DIR/bundle/
-git submodule add https://github.com/tpope/vim-unimpaired.git $DIR/bundle/
-
-# Pull the submodules down.
-git submodule foreach git pull origin master
 
 # Pretty crappy but it works for now.
 if [ ! -z $(which apt-get) ]; then
@@ -69,12 +69,18 @@ else
   echo "Your system's package manager may not be supported, or you need to install Homebrew."
 fi
 
-# Timed prompt that asks about writing $HOME/.vim directory. 
-echo "Would you like to create a $HOME/.vim directory? (y/n) default = No"
+# TODO: Fix the stupid logic cause bash is killing you.
+# Timed prompt that asks about extra features.
+echo "Would you like to install your plug-ins? (y/n) default = Y"
 read -t 10
 if [ \( "$REPLY" = "y" -o "$REPLY" = "Y" \) ]; then
-  copy_dotvim
+  add_submodules
+elif [ -z $REPLY ]; then
+  add_submodules
 else
-  echo "Exiting without copying .vim directory."
+  echo "Exiting without installing plug-in submodules."
   exit
 fi
+
+# Clean up any mess and say goodbye.
+clean_up
