@@ -53,7 +53,7 @@ function add_submodules() {
 }
 
 function clean_up() {
-  echo "I'm done, goodbye!"
+  echo "Install complete."
 }
 
 # ==============================================================================
@@ -69,17 +69,14 @@ else
   echo "Your system's package manager may not be supported, or you need to install Homebrew."
 fi
 
-# TODO: Fix the stupid logic cause bash is killing you.
-# Timed prompt that asks about extra features.
-echo "Would you like to install your plug-ins? (y/n) default = Y"
+# Timed prompt that asks about installing plug-in submodules. This won't work
+# if this file is sourced from outside the .vim folder.
+echo "Would you like to install your plug-ins? (y/n) default = N"
 read -t 10
-if [ \( "$REPLY" = "y" -o "$REPLY" = "Y" \) ]; then
-  add_submodules
-elif [ -z $REPLY ]; then
-  add_submodules
+if [ ! \( "$REPLY" = "y" -o "$REPLY" = "Y" \) ]; then
+  echo "Skipping plug-in submodule installation."
 else
-  echo "Exiting without installing plug-in submodules."
-  exit
+  add_submodules
 fi
 
 # Clean up any mess and say goodbye.
