@@ -174,14 +174,13 @@ nnoremap <Leader>#= i#<SPACE><SPACE><ESC>78i=<ESC>lx
 " Run make
 nnoremap <Leader>m :make<CR>
 
-" Ctags search order, active buffer directory then current working directory
-set tags=./tags,tags;
-nnoremap <Leader>ct :!ctags -R .<CR>
-
-" Ctags system tags file location (not stored in git repo)
-" TODO: Make sure all the necessary directories are listed.
-set tags+=~/.vim/systags
-nnoremap <Leader>sct :!ctags -R -f ~/.vim/systags /usr/include /usr/local/include
+" Ctags search order: current buffer dir, current working dir, system libraries
+" TODO: Make sure all the necessary directories are listed and indexed.
+set tags=./tags,tags,$HOME/.vim/systags;
+" To run ctags over the current working directory recursively.
+nnoremap <Leader>ct :!ctags -R .
+" To run ctags over the system libraries.
+nnoremap <Leader>sct :!ctags -R -f $HOME/.vim/systags /usr/include /usr/local/include
 
 " Tagbar plugin, command for quick open and close upon selection.
 nnoremap <Leader>tb :TagbarOpenAutoClose<CR>

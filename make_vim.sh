@@ -12,10 +12,10 @@ function install_thru_brew() {
   # Install Vim
   brew install -y vim
   brew install -y macvim
-
-  # System tools that help with C code.
-  # Run :help cscope, or :help Exuberant_ctags in Vim for info.
-  brew install -y cscope
+  # System tool that indexes code for 41 different languages.
+  # To recursively index current directory use <leader>ct
+  # To index the system libraries use <leader>sct
+  # Run :help Exuberant_ctags in Vim for info.
   brew install -y ctags-exuberant
 }
 
@@ -27,11 +27,26 @@ function install_thru_apt() {
   if [ ! -z $(which X) ]; then
     sudo apt-get install -y vim-gnome
   fi
-
-  # System tools that help with C code.
-  # Run :help cscope, or :help Exuberant_ctags in Vim for info.
-  sudo apt-get install -y cscope
+  # System tool that indexes code for 41 different languages.
+  # To recursively index current directory use <leader>ct
+  # To index the system libraries use <leader>sct
+  # Run :help Exuberant_ctags in Vim for info.
   sudo apt-get install -y exuberant-ctags
+}
+
+# For yum managed systems.
+function install_thru_yum() {
+  # Install Vim
+  sudo yum install -y vim
+  # If X windowing is available install GUI Vim.
+  if [ ! -z $(which X) ]; then
+    sudo yum install -y gvim
+  fi
+  # System tool that indexes code for 41 different languages.
+  # To recursively index current directory use <leader>ct
+  # To index the system libraries use <leader>sct
+  # Run :help Exuberant_ctags in Vim for info.
+  sudo yum install -y ctags
 }
 
 function add_submodules() {
@@ -47,7 +62,6 @@ function add_submodules() {
   git submodule add https://github.com/tpope/vim-repeat.git $DIR/bundle/
   git submodule add https://github.com/tpope/vim-surround.git $DIR/bundle/
   git submodule add https://github.com/tpope/vim-unimpaired.git $DIR/bundle/
-
   # Pull the submodules down.
   git submodule foreach git pull origin master
 }
@@ -65,6 +79,8 @@ if [ ! -z $(which apt-get) ]; then
   install_thru_apt
 elif [ ! -z $(which brew) ]; then
   install_thru_brew
+elif [ ! -z $(which yum) ]; then
+  install_thru_yum
 else
   echo "Your system's package manager may not be supported, or you need to install Homebrew."
 fi
