@@ -50,13 +50,13 @@ function install_thru_yum() {
 }
 
 function add_submodules() {
-  # Create bundle directory and add submodules.
+  # Create bundle directory and add submodules, requires pathogen.
   DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
   mkdir -p $DIR/bundle
   git submodule update --init $DIR/bundle/
   git submodule add https://github.com/tpope/vim-pathogen.git $DIR/bundle/
   git submodule add https://github.com/scrooloose/syntastic.git $DIR/bundle/
-  git submodule add https://github.com/majutsushi/tagbar.git $DIR/bundle/
+  git submodule add https://github.com/majutsushi/tagbar.git $DIR/bundle/ # Tagbar depends on ctags.
   git submodule add https://github.com/tpope/vim-commentary.git $DIR/bundle/
   git submodule add https://github.com/tpope/vim-markdown.git $DIR/bundle/
   git submodule add https://github.com/tpope/vim-repeat.git $DIR/bundle/
@@ -67,7 +67,7 @@ function add_submodules() {
 }
 
 function clean_up() {
-  echo "Install complete."
+  echo "Install complete. Don't forget to run :helptags in Vim."
 }
 
 # ==============================================================================
