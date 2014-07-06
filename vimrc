@@ -12,6 +12,7 @@ execute pathogen#infect()
 execute pathogen#helptags()
 
 set nocompatible " Turn off vi compatible mode
+scriptencoding utf-8 " Fixes jacked up Windows encoding
 
 " Turn filetype stuff back on
 if has("autocmd")
