@@ -35,15 +35,16 @@ endif
 
 set background=dark
 
-" Set colors for 256 color terminals
+" Set colors and font for 256 color and GUI's
 if &t_Co >= 256 || has("gui_running")
   colorscheme jellybeans
-  " Jellybeans color overrides to play with, won't affect updates.
-  let g:jellybeans_overrides = {
-        \    'Todo': { 'guifg': '303030', 'guibg': 'f0f000',
-        \              'ctermfg': 'Black', 'ctermbg': 'Yellow',
-        \              'attr': 'bold' },
-        \}
+  if has("gui_gtk2")
+    " set guifont=???
+  elseif has("gui_macvim")
+    set guifont=Monaco:h10
+  elseif has("gui_win32")
+    set guifont=Source_Code_Pro:h9:cANSI
+  endif
 else
   colorscheme default
 endif
