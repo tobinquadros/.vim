@@ -44,6 +44,8 @@ if &t_Co >= 256 || has("gui_running")
     set guifont=Monaco:h10
   elseif has("gui_win32")
     set guifont=Source_Code_Pro:h9:cANSI
+    " Maximize window at startup.
+    au GUIEnter * simalt ~x
   endif
 else
   colorscheme default

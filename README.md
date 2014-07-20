@@ -16,9 +16,9 @@ cd $HOME/.vim
 
 ### On Windows:
 
-_Git is a dependency for this to work._
+_Git Bash needs to be installed for this to work._
 
-Use Git Bash to start terminal.
+Use Git Bash to start a terminal.
 
 ```sh
 git clone https://github.com/tobinquadros/Vim $HOME/vimfiles
@@ -28,4 +28,6 @@ cd $HOME/vimfiles
 ./make_vim.sh
 ```
 When prompted if you would like to install plugins type "y".
+
+(If you wish to use the tagbar plug-in you will need Exuberant Ctags http://sourceforge.net/projects/ctags/files/latest/download?source=files )
 

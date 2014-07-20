@@ -81,6 +81,13 @@ elif [ ! -z $(which brew) ]; then
   install_thru_brew
 elif [ ! -z $(which yum) ]; then
   install_thru_yum
+elif [ $(uname) = "MINGW32_NT-6.1" ]; then
+  echo "Download exuberant Ctags http://sourceforge.net/projects/ctags/files/ctags/"
+  echo
+  echo "Extract the Ctags zip file and move to C:\Program Files\CtagsX.Y"
+  echo
+  echo "Add C:\Program Files\CtagsX.Y\ to your path."
+  echo
 else
   echo "Your system's package manager may not be supported, or you need to install Homebrew."
 fi
