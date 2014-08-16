@@ -1,6 +1,8 @@
 # Overview:
 
-My dotfiles got way too bloated. Simple things make me happy.
+My dotfiles got way too bloated to be portable. This is just Vim configs, but
+can be installed on OSX, Linux, and Windows. Handy if you jump around alot like
+me.
 
 ## Usage:
 

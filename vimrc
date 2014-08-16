@@ -168,6 +168,9 @@ inoremap jk <ESC>
 
 " Edit .vimrc file
 nnoremap <Leader>ev :edit $MYVIMRC<CR>
+nnoremap <Leader>e. :edit .<CR>
+nnoremap <Leader>E :Explore<CR>
+nnoremap <Leader>re :Rexplore<CR>
 
 " Remove search highlights, keep history
 nnoremap <Leader>hs :nohlsearch<CR>
