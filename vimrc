@@ -174,6 +174,7 @@ nnoremap <Leader>hs :nohlsearch<CR>
 
 " Insert divider for commenting
 nnoremap <Leader>#= i#<SPACE><SPACE><ESC>78i=<ESC>lx
+nnoremap <Leader>/= i//<SPACE><SPACE><ESC>77i=<ESC>lx
 
 " Run make
 nnoremap <Leader>m :make<CR>

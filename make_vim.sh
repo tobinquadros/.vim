@@ -54,10 +54,13 @@ function add_submodules() {
   DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
   mkdir -p $DIR/bundle
   git submodule update --init $DIR/bundle/
+  # Pathogen is required!!!
   git submodule add https://github.com/tpope/vim-pathogen.git $DIR/bundle/
+  # Personalize pathogen compatible Vim plugins here.
   git submodule add https://github.com/scrooloose/syntastic.git $DIR/bundle/
   git submodule add https://github.com/majutsushi/tagbar.git $DIR/bundle/ # Tagbar depends on ctags.
   git submodule add https://github.com/tpope/vim-commentary.git $DIR/bundle/
+  git submodule add https://github.com/tpope/vim-fugitive.git $DIR/bundle/
   git submodule add https://github.com/tpope/vim-markdown.git $DIR/bundle/
   git submodule add https://github.com/tpope/vim-repeat.git $DIR/bundle/
   git submodule add https://github.com/tpope/vim-surround.git $DIR/bundle/
