@@ -80,6 +80,7 @@ set omnifunc=syntaxcomplete#Complete " Set omni-completion method.
 set laststatus=2 " Show statusbar
 set ruler " Show statusbar (line,column) numbers
 set statusline=%n\ %<%f\ %y\ %h%1*%m%*%r%=%-14.(%l,%c%V%)\ %P " Statusline attributes
+set statusline+=%{fugitive#statusline()} " Add current Git branch.
 set report=0 " Always show number of lines changed
 set showcmd " Show commands (or selections) in last line of screen
 set showmode " Show INSERT, VISUAL, etc., on last line of screen
