@@ -5,14 +5,15 @@
 " RUNTIME SETUP
 " ==============================================================================
 
+" Leave these first.
+set nocompatible " Turn off vi compatible mode
+scriptencoding utf-8 " Fixes jacked up Windows encoding
+
 " Load plugin bundles and docs.
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 filetype off " Disbale before loading pathogen
 execute pathogen#infect()
 execute pathogen#helptags()
-
-set nocompatible " Turn off vi compatible mode
-scriptencoding utf-8 " Fixes jacked up Windows encoding
 
 " Turn filetype stuff back on
 if has("autocmd")
