@@ -52,21 +52,20 @@ function install_thru_yum() {
 function add_submodules() {
   # Create bundle directory and add submodules, requires pathogen.
   DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-  rm -rf $DIR/bundle
   mkdir -p $DIR/bundle
-  git submodule update --init $DIR/bundle/
+  git submodule update --init $DIR/bundle
   # Pathogen is required!!!
-  git submodule add https://github.com/tpope/vim-pathogen.git $DIR/bundle/
+  git submodule add https://github.com/tpope/vim-pathogen.git $DIR/bundle/vim-pathogen
   # Personalize pathogen compatible Vim plugins here.
-  git submodule add https://github.com/saltstack/salt-vim.git $DIR/bundle/
-  git submodule add https://github.com/scrooloose/syntastic.git $DIR/bundle/
-  git submodule add https://github.com/majutsushi/tagbar.git $DIR/bundle/ # Tagbar depends on ctags.
-  git submodule add https://github.com/tpope/vim-commentary.git $DIR/bundle/
-  git submodule add https://github.com/tpope/vim-fugitive.git $DIR/bundle/
-  git submodule add https://github.com/tpope/vim-markdown.git $DIR/bundle/
-  git submodule add https://github.com/tpope/vim-repeat.git $DIR/bundle/
-  git submodule add https://github.com/tpope/vim-surround.git $DIR/bundle/
-  git submodule add https://github.com/tpope/vim-unimpaired.git $DIR/bundle/
+  git submodule add https://github.com/saltstack/salt-vim.git $DIR/bundle/salt-vim
+  git submodule add https://github.com/scrooloose/syntastic.git $DIR/bundle/syntastic
+  git submodule add https://github.com/majutsushi/tagbar.git $DIR/bundle/tagbar # Tagbar depends on ctags.
+  git submodule add https://github.com/tpope/vim-commentary.git $DIR/bundle/vim-commentary
+  git submodule add https://github.com/tpope/vim-fugitive.git $DIR/bundle/vim-fugitive
+  git submodule add https://github.com/tpope/vim-markdown.git $DIR/bundle/vim-markdown
+  git submodule add https://github.com/tpope/vim-repeat.git $DIR/bundle/vim-repeat
+  git submodule add https://github.com/tpope/vim-surround.git $DIR/bundle/vim-surround
+  git submodule add https://github.com/tpope/vim-unimpaired.git $DIR/bundle/vim-unimpaired
   # Pull the submodules down.
   git submodule foreach git pull origin master
 }

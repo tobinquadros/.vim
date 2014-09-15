@@ -1,27 +1,30 @@
-[submodule "bundle/vim-pathogen"]
-	path = bundle/vim-pathogen
+[submodule "/Users/tobin/.vim/bundle/vim-pathogen"]
+	path = /Users/tobin/.vim/bundle/vim-pathogen
 	url = https://github.com/tpope/vim-pathogen.git
-[submodule "bundle/syntastic"]
-	path = bundle/syntastic
+[submodule "/Users/tobin/.vim/bundle/salt-vim"]
+	path = /Users/tobin/.vim/bundle/salt-vim
+	url = https://github.com/saltstack/salt-vim.git
+[submodule "/Users/tobin/.vim/bundle/syntastic"]
+	path = /Users/tobin/.vim/bundle/syntastic
 	url = https://github.com/scrooloose/syntastic.git
-[submodule "bundle/tagbar"]
-	path = bundle/tagbar
+[submodule "/Users/tobin/.vim/bundle/tagbar"]
+	path = /Users/tobin/.vim/bundle/tagbar
 	url = https://github.com/majutsushi/tagbar.git
-[submodule "bundle/vim-commentary"]
-	path = bundle/vim-commentary
+[submodule "/Users/tobin/.vim/bundle/vim-commentary"]
+	path = /Users/tobin/.vim/bundle/vim-commentary
 	url = https://github.com/tpope/vim-commentary.git
-[submodule "bundle/vim-markdown"]
-	path = bundle/vim-markdown
-	url = https://github.com/tpope/vim-markdown.git
-[submodule "bundle/vim-repeat"]
-	path = bundle/vim-repeat
-	url = https://github.com/tpope/vim-repeat.git
-[submodule "bundle/vim-surround"]
-	path = bundle/vim-surround
-	url = https://github.com/tpope/vim-surround.git
-[submodule "bundle/vim-unimpaired"]
-	path = bundle/vim-unimpaired
-	url = https://github.com/tpope/vim-unimpaired.git
-[submodule "bundle/vim-fugitive.git"]
-	path = bundle/vim-fugitive.git
+[submodule "/Users/tobin/.vim/bundle/vim-fugitive"]
+	path = /Users/tobin/.vim/bundle/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive.git
+[submodule "/Users/tobin/.vim/bundle/vim-markdown"]
+	path = /Users/tobin/.vim/bundle/vim-markdown
+	url = https://github.com/tpope/vim-markdown.git
+[submodule "/Users/tobin/.vim/bundle/vim-repeat"]
+	path = /Users/tobin/.vim/bundle/vim-repeat
+	url = https://github.com/tpope/vim-repeat.git
+[submodule "/Users/tobin/.vim/bundle/vim-surround"]
+	path = /Users/tobin/.vim/bundle/vim-surround
+	url = https://github.com/tpope/vim-surround.git
+[submodule "/Users/tobin/.vim/bundle/vim-unimpaired"]
+	path = /Users/tobin/.vim/bundle/vim-unimpaired
+	url = https://github.com/tpope/vim-unimpaired.git
