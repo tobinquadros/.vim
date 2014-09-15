@@ -2,6 +2,12 @@
 # make_vim.sh
 
 # Installs and upgrades Vim, .vim directory, vimrc, and plugin submodules.
+#
+# Exuberant CTags:
+#   System tool that indexes code for 41 different languages.
+#   To recursively index current directory use <leader>ct
+#   To index the system libraries use <leader>sct
+#   Run :help Exuberant_ctags in Vim for info.
 
 # ==============================================================================
 # Function Definitions
@@ -12,10 +18,6 @@ function install_thru_brew() {
   # Install Vim
   brew install -y vim
   brew install -y macvim
-  # System tool that indexes code for 41 different languages.
-  # To recursively index current directory use <leader>ct
-  # To index the system libraries use <leader>sct
-  # Run :help Exuberant_ctags in Vim for info.
   brew install -y ctags-exuberant
 }
 
@@ -27,10 +29,6 @@ function install_thru_apt() {
   if [ ! -z $(which X) ]; then
     sudo apt-get install -y vim-gnome
   fi
-  # System tool that indexes code for 41 different languages.
-  # To recursively index current directory use <leader>ct
-  # To index the system libraries use <leader>sct
-  # Run :help Exuberant_ctags in Vim for info.
   sudo apt-get install -y exuberant-ctags
 }
 
@@ -42,14 +40,10 @@ function install_thru_yum() {
   if [ ! -z $(which X) ]; then
     sudo yum install -y gvim
   fi
-  # System tool that indexes code for 41 different languages.
-  # To recursively index current directory use <leader>ct
-  # To index the system libraries use <leader>sct
-  # Run :help Exuberant_ctags in Vim for info.
   sudo yum install -y ctags
 }
 
-function add_submodules() {
+function handle_plugins() {
   # Create bundle directory and add submodules, requires pathogen.
   DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
   mkdir -p $DIR/bundle
@@ -96,15 +90,21 @@ else
   echo "Your system's package manager may not be supported, or you need to install Homebrew."
 fi
 
-# Timed prompt that asks about installing plug-in submodules. This won't work
-# if this file is sourced from outside the .vim folder.
-echo "Would you like to install your plug-ins? (y/n) default = N"
-read -t 10
-if [ ! \( "$REPLY" = "y" -o "$REPLY" = "Y" \) ]; then
-  echo "Skipping plug-in submodule installation."
+# Check if plug-ins should be ignored.
+# Used single equal (=) sign is for posix compliance.
+if [ "$1" = "--no-plugins" ]; then
+  HANDLE_PLUGINS=0
 else
-  add_submodules
+  HANDLE_PLUGINS=1
+fi
+
+# If set, update or install plug-in submodules.
+if [ $HANDLE_PLUGINS -eq 1 ]; then
+  handle_plugins
+else
+  echo "Skipping plug-in submodule installation."
 fi
 
 # Clean up any mess and say goodbye.
 clean_up
+

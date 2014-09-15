@@ -1,12 +1,11 @@
 # Overview:
 
-My dotfiles got way too bloated to be portable. This is just Vim configs, but
-can be installed on OSX, Linux, and Windows. Handy if you jump around alot like
-me.
+My dotfiles got way too bloated to be portable. This is Vim configs and
+plug-ins. Handy if you jump around alot.
 
-## Usage:
+# Usage:
 
-### On Ubuntu & MacOSX:
+## On MacOSX (Homebrew) & Linux (APT/YUM):
 
 ```sh
 git clone https://github.com/tobinquadros/Vim $HOME/.vim
@@ -16,7 +15,7 @@ cd $HOME/.vim
 ./make_vim.sh
 ```
 
-### On Windows:
+## On Windows:
 
 _Git Bash needs to be installed for this to work._
 
@@ -31,5 +30,13 @@ cd $HOME/vimfiles
 ```
 When prompted if you would like to install plugins type "y".
 
-(If you wish to use the tagbar plug-in you will need Exuberant Ctags http://sourceforge.net/projects/ctags/files/latest/download?source=files )
+(If you wish to use the tagbar plug-in you will need Exuberant Ctags http://sourceforge.net/projects/ctags )
+
+# Options:
+
+If you don't want plug-ins installed (or updated):
+
+```sh
+./make_vim.sh --no-plugins
+```
 
