@@ -31,7 +31,7 @@ if has('mouse')
 endif
 
 " ==============================================================================
-" COLOR
+" COLOR & FONT
 " ==============================================================================
 
 set background=dark
@@ -167,10 +167,19 @@ let mapleader=" "
 " Escape from insert mode
 inoremap jk <ESC>
 
+" List current buffers
+nnoremap <Leader>ls :ls<CR>
+
 " Edit .vimrc file
 nnoremap <Leader>ev :edit $MYVIMRC<CR>
+
+" Netrw the current working directory
 nnoremap <Leader>e. :edit .<CR>
+
+" Netrw the directory the file is in.
 nnoremap <Leader>E :Explore<CR>
+
+" Swap back and forth between file and netrw.
 nnoremap <Leader>re :Rexplore<CR>
 
 " Remove search highlights, keep history
