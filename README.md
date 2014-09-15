@@ -1,7 +1,6 @@
 # Overview:
 
-My dotfiles got way too bloated to be portable. This is Vim configs and
-plug-ins. Handy if you jump around alot.
+My dotfiles got way too bloated to be portable. This is just Vim configs & plug-ins.
 
 # Usage:
 
@@ -28,7 +27,6 @@ cd $HOME/vimfiles
 
 ./make_vim.sh
 ```
-When prompted if you would like to install plugins type "y".
 
 (If you wish to use the tagbar plug-in you will need Exuberant Ctags http://sourceforge.net/projects/ctags )
 
