@@ -48,28 +48,23 @@ function install_thru_yum() {
 }
 
 function handle_plugins() {
-  # Create bundle directory and add submodules, requires pathogen.
+  # Create .vim/bundle/ directory, even if sourced from elsewhere.
   DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
   mkdir -p $DIR/bundle
-  git submodule update --init $DIR/bundle
-  # Pathogen is required!!!
-  git submodule add https://github.com/tpope/vim-pathogen.git $DIR/bundle/vim-pathogen
-  # Personalize pathogen compatible Vim plugins here.
-  git submodule add https://github.com/saltstack/salt-vim.git $DIR/bundle/salt-vim
-  git submodule add https://github.com/scrooloose/syntastic.git $DIR/bundle/syntastic
-  git submodule add https://github.com/majutsushi/tagbar.git $DIR/bundle/tagbar # Tagbar depends on ctags.
-  git submodule add https://github.com/tpope/vim-commentary.git $DIR/bundle/vim-commentary
-  git submodule add https://github.com/tpope/vim-fugitive.git $DIR/bundle/vim-fugitive
-  git submodule add https://github.com/tpope/vim-markdown.git $DIR/bundle/vim-markdown
-  git submodule add https://github.com/tpope/vim-repeat.git $DIR/bundle/vim-repeat
-  git submodule add https://github.com/tpope/vim-surround.git $DIR/bundle/vim-surround
-  git submodule add https://github.com/tpope/vim-unimpaired.git $DIR/bundle/vim-unimpaired
-  # Pull the submodules down.
-  git submodule foreach git pull origin master
+
+  # Clone or pull down updates for Vundle.vim plug-in.
+  if [ -d "$DIR/bundle/Vundle.vim" ]; then
+    cd $DIR/bundle/Vundle.vim/
+    (git pull origin master && (cd - > /dev/null)) || (echo "Vundle update failed."; exit 1)
+  else
+    git clone https://github.com/gmarik/Vundle.vim.git $DIR/bundle/Vundle.vim
+  fi
 }
 
 function clean_up() {
-  echo "Install complete. Don't forget to run :helptags in Vim."
+  echo "Install complete."
+  echo "Run:"
+  echo "  vim +PluginInstall +qall"
 }
 
 # ==============================================================================
@@ -106,7 +101,7 @@ fi
 if [ $HANDLE_PLUGINS -eq 1 ]; then
   handle_plugins
 else
-  echo "Skipping plug-in submodule installation."
+  echo "Skipping plug-in installations."
 fi
 
 # Clean up any mess and say goodbye.

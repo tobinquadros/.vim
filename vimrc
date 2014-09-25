@@ -1,37 +1,49 @@
 " $HOME/.vimrc
 " Author: Tobin Quadros
 
-" ==============================================================================
-" RUNTIME SETUP
-" ==============================================================================
-
 " Leave these first.
 set nocompatible " Turn off vi compatible mode
-scriptencoding utf-8 " Fixes jacked up Windows encoding
+filetype off
 
-" Load plugin bundles and docs.
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-filetype off " Disbale before loading pathogen
-execute pathogen#infect()
-execute pathogen#helptags()
+" ==============================================================================
+" VUNDLE & PLUGIN's
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+" see :h vundle for more details or wiki for FAQ
+" ==============================================================================
 
-" Turn filetype stuff back on
-if has("autocmd")
-  filetype plugin indent on
-endif
+" Required by Vundle, set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+
+" Required by Vundle, keep plugin commands between vundle#begin/end.
+call vundle#begin()
+
+" Plugins on GitHub, see https://github.com/gmarik/Vundle.vim README.
+Plugin 'gmarik/Vundle.vim' " Let Vundle manage Vundle, required
+Plugin 'majutsushi/tagbar' " Depends on ctags executable.
+Plugin 'saltstack/salt-vim'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-markdown'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-unimpaired'
+
+" Required by Vundle, plugins must be added before this line.
+call vundle#end()
+
+" Required by Vundle, turn filetype stuff back on.
+filetype plugin indent on
 
 " Load matchit.vim, but only if the user hasn't installed a newer version.
 if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
   runtime! macros/matchit.vim
 endif
 
-" Enable mouse
-if has('mouse')
-  set mouse=a
-endif
-
 " ==============================================================================
-" COLOR & FONT
+" COLOR, FONT, & ENCODING
 " ==============================================================================
 
 set background=dark
@@ -44,6 +56,7 @@ if &t_Co >= 256 || has("gui_running")
   elseif has("gui_macvim")
     set guifont=Monaco:h10
   elseif has("gui_win32")
+    scriptencoding utf-8 " Fixes jacked up Windows encoding
     set guifont=Source_Code_Pro:h9:cANSI
     " Maximize window at startup.
     au GUIEnter * simalt ~x
@@ -60,6 +73,11 @@ endif
 " ==============================================================================
 " OPTIONS
 " ==============================================================================
+
+" Enable mouse
+if has('mouse')
+  set mouse=a
+endif
 
 " Editor windows
 set wrap " Text wraps at terminal edge
@@ -113,7 +131,6 @@ set smartcase " Recognize case-sensitive input
 
 " ==============================================================================
 " FILETYPES & AUTOCOMMANDS
-" To check native compilers run :args $VIMRUNTIME/compiler/*.vim
 " ==============================================================================
 
 " Syntastic
@@ -158,7 +175,7 @@ if has("autocmd")
 endif
 
 " ==============================================================================
-" MAPPINGS & FUNCTIONS
+" MAPPINGS
 " ==============================================================================
 
 " Remap the Leader key to spacebar
@@ -221,14 +238,18 @@ nnoremap <Leader>* :%s/\<<C-r><C-w>\>//gc<LEFT><LEFT><LEFT>
 " Sudo write
 nnoremap <Leader>sw :w !sudo tee % >/dev/null
 
-" Diff between modified buffer and saved file (\do)
+" ==============================================================================
+" FUNCTIONS (w/ MAPPINGS)
+" ==============================================================================
+
+" Diff between modified buffer and saved file.
 if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
     \ | wincmd p | diffthis
 endif
 nnoremap <Leader>do :DiffOrig<CR>
 
-" Strip trailing whitespace from lines (\ws)
+" Strip trailing whitespace from lines.
 function! StripWhitespace()
     let save_cursor = getpos(".")
     let old_query = getreg('/')
@@ -238,7 +259,7 @@ function! StripWhitespace()
 endfunction
 nnoremap <Leader>ws :call StripWhitespace()<CR>
 
-" Toggle colorcolumn with filetype textwidth (\cc)
+" Toggle colorcolumn with filetype textwidth.
 function! ToggleColorColumn()
   " If colorcolumn is off, turn it on
   if empty(&colorcolumn)
