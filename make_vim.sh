@@ -59,12 +59,11 @@ function handle_plugins() {
   else
     git clone https://github.com/gmarik/Vundle.vim.git $DIR/bundle/Vundle.vim
   fi
+  vim '+PluginInstall!' +qall
 }
 
 function clean_up() {
   echo "Install complete."
-  echo "Run:"
-  echo "  vim +PluginInstall +qall"
 }
 
 # ==============================================================================

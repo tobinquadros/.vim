@@ -1,6 +1,6 @@
 # Overview:
 
-My dotfiles got way too bloated to be portable. This is just Vim configs & plug-ins.
+My dotfiles got way too bloated to be portable. This is just Vim configs & plug-ins with Vundle.
 
 # Usage:
 
