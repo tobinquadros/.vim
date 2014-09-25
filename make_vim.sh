@@ -52,13 +52,15 @@ function handle_plugins() {
   DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
   mkdir -p $DIR/bundle
 
-  # Clone or pull down updates for Vundle.vim plug-in.
+  # Clone or pull down updates for Vundle.vim plugin.
   if [ -d "$DIR/bundle/Vundle.vim" ]; then
     cd $DIR/bundle/Vundle.vim/
     (git pull origin master && (cd - > /dev/null)) || (echo "Vundle update failed."; exit 1)
   else
     git clone https://github.com/gmarik/Vundle.vim.git $DIR/bundle/Vundle.vim
   fi
+
+  # Run the Vundle plugin update and install function.
   vim '+PluginInstall!' +qall
 }
 
@@ -88,7 +90,7 @@ else
   echo "Your system's package manager may not be supported, or you need to install Homebrew."
 fi
 
-# Check if plug-ins should be ignored.
+# Check if plugins should be ignored.
 # Used single equal (=) sign is for posix compliance.
 if [ "$1" = "--no-plugins" ]; then
   HANDLE_PLUGINS=0
@@ -96,11 +98,11 @@ else
   HANDLE_PLUGINS=1
 fi
 
-# If set, update or install plug-in submodules.
+# If set, update or install plugin submodules.
 if [ $HANDLE_PLUGINS -eq 1 ]; then
   handle_plugins
 else
-  echo "Skipping plug-in installations."
+  echo "Skipping plugin installations."
 fi
 
 # Clean up any mess and say goodbye.
