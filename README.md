@@ -1,6 +1,6 @@
 # Overview:
 
-My dotfiles got way too bloated to be portable. This is just Vim configs & plug-ins with Vundle.
+My dotfiles got way too bloated to be portable. This is just Vim configs & plugins with Vundle.
 
 # Usage:
 
@@ -28,11 +28,11 @@ cd $HOME/vimfiles
 ./make_vim.sh
 ```
 
-(If you wish to use the tagbar plug-in you will need Exuberant Ctags http://sourceforge.net/projects/ctags )
+(If you wish to use the tagbar plugin on Windows you will need to manually install Exuberant Ctags http://sourceforge.net/projects/ctags )
 
 # Options:
 
-If you don't want plug-ins installed (or updated):
+If you don't want plugins installed (or updated):
 
 ```sh
 ./make_vim.sh --no-plugins
