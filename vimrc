@@ -28,8 +28,8 @@ Plugin 'bling/vim-airline'
 Plugin 'scrooloose/syntastic'
 Plugin 'saltstack/salt-vim'
 Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-dispatch'
 Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-markdown'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
@@ -105,7 +105,8 @@ set smarttab " Smarter tabs and expanding
 set tabstop=2 softtabstop=2 shiftwidth=2 expandtab " Global settings
 set omnifunc=syntaxcomplete#Complete " Set omni-completion method.
 
-" Statusbar, vim-airline setup.
+" Statusbar
+" VIM-AIRLINE PLUGIN.
 let g:airline#extensions#tabline#enabled = 1
 set laststatus=2 " Always show statusbar
 set ruler " Show statusbar (line,column) numbers
@@ -143,7 +144,7 @@ set smartcase " Recognize case-sensitive input
 " FILETYPES & AUTOCOMMANDS
 " ==============================================================================
 
-" Syntastic
+" SYNTASTIC PLUGIN
 let g:syntastic_check_on_open=0 " Check syntax when file is opened
 let g:syntastic_aggregate_errors = 1 " Allow multiple checkers
 command! -nargs=* E Explore " Fix Explore conflict if needed
@@ -185,7 +186,7 @@ if has("autocmd")
 endif
 
 " ==============================================================================
-" MAPPINGS
+" MAPPINGS (plugins settings at the bottom)
 " ==============================================================================
 
 " Remap the Leader key to spacebar
@@ -219,19 +220,6 @@ nnoremap <Leader>/= i//<SPACE><SPACE><ESC>77i=<ESC>lx
 " Run make
 nnoremap <Leader>m :make<CR>
 
-" Ctags search order: current buffer dir, current working dir, system libraries
-" TODO: Make sure all the necessary directories are listed and indexed.
-set tags=./tags,tags,$HOME/.vim/systags;
-
-" To run ctags over the current working directory recursively.
-nnoremap <Leader>ct :!ctags -R .
-
-" To run ctags over the system libraries.
-nnoremap <Leader>sct :!ctags -R -f $HOME/.vim/systags /usr/include /usr/local/include
-
-" Tagbar plugin, command for quick open and close upon selection.
-nnoremap <Leader>tb :TagbarOpenAutoClose<CR>
-
 " Yank from cursor to end of line
 nmap Y y$
 
@@ -250,6 +238,23 @@ nnoremap <Leader>* :%s/\<<C-r><C-w>\>//gc<LEFT><LEFT><LEFT>
 
 " Sudo write
 nnoremap <Leader>sw :w !sudo tee % >/dev/null
+
+" CTAGS PLUGIN
+" Search order: current buffer dir, current working dir, system libraries
+" TODO: Make sure all the necessary directories are listed and indexed.
+set tags=./tags,tags,$HOME/.vim/systags;
+" To run ctags over the current working directory recursively.
+nnoremap <Leader>ct :!ctags -R .
+" To run ctags over the system libraries.
+nnoremap <Leader>sct :!ctags -R -f $HOME/.vim/systags /usr/include /usr/local/include
+
+" TAGBAR PLUGIN
+" Command for quick open and close upon selection.
+nnoremap <Leader>tb :TagbarOpenAutoClose<CR>
+
+" FUGITIVE PLUGIN
+" Git status
+nnoremap <Leader>gs :Gstatus<CR>
 
 " ==============================================================================
 " FUNCTIONS (w/ MAPPINGS)
