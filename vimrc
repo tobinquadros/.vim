@@ -1,4 +1,4 @@
-" $HOME/.vimrc
+" vimrc
 " Author: Tobin Quadros
 
 " Leave these first.
@@ -20,9 +20,10 @@ set rtp+=~/.vim/bundle/Vundle.vim
 " Required by Vundle, keep plugin commands between vundle#begin/end.
 call vundle#begin()
 
+" Let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
 " Plugins on GitHub, see https://github.com/gmarik/Vundle.vim README.
-Plugin 'gmarik/Vundle.vim' " Let Vundle manage Vundle, required
-Plugin 'majutsushi/tagbar' " Depends on ctags executable.
 Plugin 'saltstack/salt-vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
@@ -30,6 +31,9 @@ Plugin 'tpope/vim-markdown'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
+
+" Note: use of tagbar depends on the ctags executable, see README.md.
+Plugin 'majutsushi/tagbar'
 
 " Required by Vundle, plugins must be added before this line.
 call vundle#end()
@@ -279,4 +283,3 @@ function! ToggleColorColumn()
   endif
 endfunction
 nnoremap <Leader>cc :call ToggleColorColumn()<CR>
-

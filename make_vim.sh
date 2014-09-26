@@ -2,9 +2,9 @@
 # make_vim.sh
 
 # Installs and upgrades Vim, .vim directory, vimrc, and plugin submodules.
-#
+
 # Exuberant CTags:
-#   System tool that indexes code for 41 different languages.
+#   System tool that indexes code for 40+ different languages.
 #   To recursively index current directory use <leader>ct
 #   To index the system libraries use <leader>sct
 #   Run :help Exuberant_ctags in Vim for info.
@@ -47,6 +47,7 @@ function install_thru_yum() {
   sudo yum install -y ctags
 }
 
+# Get and install plugins with Vundle.
 function handle_plugins() {
   # Create .vim/bundle/ directory, even if sourced from elsewhere.
   DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -64,6 +65,7 @@ function handle_plugins() {
   vim '+PluginInstall!' +qall
 }
 
+# Gracefully end the setup.
 function clean_up() {
   echo "Install complete."
 }
@@ -98,11 +100,11 @@ else
   HANDLE_PLUGINS=1
 fi
 
-# If set, update or install plugin submodules.
+# If set, update or install plugins.
 if [ $HANDLE_PLUGINS -eq 1 ]; then
   handle_plugins
 else
-  echo "Skipping plugin installations."
+  echo "Skipping Vundle plugin installations and updates."
 fi
 
 # Clean up any mess and say goodbye.
