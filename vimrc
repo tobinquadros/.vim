@@ -50,23 +50,27 @@ endif
 " COLOR, FONT, & ENCODING
 " ==============================================================================
 
+" Always set the background to dark.
 set background=dark
 
-" Set colors and font for 256 color and GUI's
+" Set colorscheme for 256 color terminals and GUI's
 if &t_Co >= 256 || has("gui_running")
   colorscheme jellybeans
-  if has("gui_gtk2")
-    " set guifont=???
-  elseif has("gui_macvim")
+else
+  colorscheme default
+endif
+
+" Set fonts, encoding, and windowing for different environments.
+if &t_Co >= 256 || has("gui_running")
+  if has("gui_macvim")
     set guifont=Monaco:h10
   elseif has("gui_win32")
-    scriptencoding utf-8 " Fixes jacked up Windows encoding
     set guifont=Source_Code_Pro:h9:cANSI
+    " Fix jacked up Windows encoding
+    scriptencoding utf-8
     " Maximize window at startup.
     au GUIEnter * simalt ~x
   endif
-else
-  colorscheme default
 endif
 
 " Enable highlighting for terminals with color
