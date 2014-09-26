@@ -1,7 +1,7 @@
 " vimrc
 " Author: Tobin Quadros
 
-" Leave these first.
+" Leave these as the first settings.
 set nocompatible " Turn off vi compatible mode
 filetype off
 
@@ -31,6 +31,7 @@ Plugin 'tpope/vim-markdown'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
+Plugin 'bling/vim-airline'
 
 " Note: use of tagbar depends on the ctags executable, see README.md.
 Plugin 'majutsushi/tagbar'
@@ -103,10 +104,10 @@ set smarttab " Smarter tabs and expanding
 set tabstop=2 softtabstop=2 shiftwidth=2 expandtab " Global settings
 set omnifunc=syntaxcomplete#Complete " Set omni-completion method.
 
-" Statusbar
-set laststatus=2 " Show statusbar
+" Statusbar, vim-airline setup.
+let g:airline#extensions#tabline#enabled = 1
+set laststatus=2 " Always show statusbar
 set ruler " Show statusbar (line,column) numbers
-set statusline=%n\ %<%f\ %y\ %{fugitive#statusline()}\ %h%1*%m%*%r%=%-14.(%l,%c%V%)\ %P " Statusline attributes
 set report=0 " Always show number of lines changed
 set showcmd " Show commands (or selections) in last line of screen
 set showmode " Show INSERT, VISUAL, etc., on last line of screen

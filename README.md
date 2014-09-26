@@ -1,6 +1,7 @@
 # Overview:
 
-My dotfiles got way too bloated to be portable. This is just Vim configs & plugins with Vundle.
+My dotfiles got way too bloated to be portable. So this repo stores Vim configs
+& plugins managed through Vundle.
 
 # Usage:
 
@@ -28,7 +29,8 @@ cd $HOME/vimfiles
 ./make_vim.sh
 ```
 
-(If you wish to use the tagbar plugin on Windows you will need to manually install Exuberant Ctags http://sourceforge.net/projects/ctags )
+(If you wish to use the tagbar plugin on Windows you will need to manually
+install Exuberant Ctags http://sourceforge.net/projects/ctags )
 
 # Options:
 
