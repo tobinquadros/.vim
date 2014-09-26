@@ -24,6 +24,9 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " Plugins on GitHub, see https://github.com/gmarik/Vundle.vim README.
+Plugin 'bling/vim-airline'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
 Plugin 'saltstack/salt-vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
@@ -31,7 +34,6 @@ Plugin 'tpope/vim-markdown'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
-Plugin 'bling/vim-airline'
 
 " Note: use of tagbar depends on the ctags executable, see README.md.
 Plugin 'majutsushi/tagbar'
@@ -207,6 +209,9 @@ nnoremap <Leader>E :Explore<CR>
 
 " Swap back and forth between file and netrw.
 nnoremap <Leader>re :Rexplore<CR>
+
+" Toggle NERDTree
+map <C-n> :NERDTreeToggle<CR>
 
 " Remove search highlights, keep history
 nnoremap <Leader>hs :nohlsearch<CR>
