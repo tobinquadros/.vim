@@ -25,7 +25,6 @@ Plugin 'gmarik/Vundle.vim'
 
 " Plugins on GitHub, see https://github.com/gmarik/Vundle.vim README.
 Plugin 'bling/vim-airline'
-Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'saltstack/salt-vim'
 Plugin 'tpope/vim-commentary'
@@ -114,7 +113,7 @@ set report=0 " Always show number of lines changed
 set showcmd " Show commands (or selections) in last line of screen
 set showmode " Show INSERT, VISUAL, etc., on last line of screen
 
-" Ex and command line settings
+" 'Ex:' and command line settings
 set wildchar=<Tab> " Character pressed to use wildcard expansion
 set wildmenu " Make menu available after wildchar press
 set wildmode=longest:full,full " Wildchar functionality
@@ -210,9 +209,6 @@ nnoremap <Leader>E :Explore<CR>
 " Swap back and forth between file and netrw.
 nnoremap <Leader>re :Rexplore<CR>
 
-" Toggle NERDTree
-map <C-n> :NERDTreeToggle<CR>
-
 " Remove search highlights, keep history
 nnoremap <Leader>hs :nohlsearch<CR>
 
@@ -226,8 +222,10 @@ nnoremap <Leader>m :make<CR>
 " Ctags search order: current buffer dir, current working dir, system libraries
 " TODO: Make sure all the necessary directories are listed and indexed.
 set tags=./tags,tags,$HOME/.vim/systags;
+
 " To run ctags over the current working directory recursively.
 nnoremap <Leader>ct :!ctags -R .
+
 " To run ctags over the system libraries.
 nnoremap <Leader>sct :!ctags -R -f $HOME/.vim/systags /usr/include /usr/local/include
 
@@ -243,6 +241,7 @@ cnoremap <C-n> <Down>
 
 " Open quickfix window, if window is open with no errors close window
 nnoremap <Leader>Q :cwindow<CR>
+
 " Close quickfix window
 nnoremap <Leader>q :cclose<CR>
 
