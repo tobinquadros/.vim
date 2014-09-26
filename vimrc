@@ -115,7 +115,7 @@ set showmode " Show INSERT, VISUAL, etc., on last line of screen
 set wildchar=<Tab> " Character pressed to use wildcard expansion
 set wildmenu " Make menu available after wildchar press
 set wildmode=longest:full,full " Wildchar functionality
-set wildignore+=*.jpg,*.jpeg,*.gif,*.png,*.gif,*.psd,*.o,*.obj
+set wildignore+=*.jpg,*.jpeg,*.gif,*.png,*.gif,*.psd,*.wav,*.aiff,*.aif,*.mp3,*.mp4,*.wmv
 
 " Registers and history
 set history=1000 " Save last 1000 commands from command line
