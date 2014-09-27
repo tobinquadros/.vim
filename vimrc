@@ -217,9 +217,6 @@ nnoremap <Leader>hs :nohlsearch<CR>
 nnoremap <Leader>#= i#<SPACE><SPACE><ESC>78i=<ESC>lx
 nnoremap <Leader>/= i//<SPACE><SPACE><ESC>77i=<ESC>lx
 
-" Run make
-nnoremap <Leader>m :make<CR>
-
 " Yank from cursor to end of line
 nmap Y y$
 
@@ -232,6 +229,9 @@ nnoremap <Leader>Q :cwindow<CR>
 
 " Close quickfix window
 nnoremap <Leader>q :cclose<CR>
+
+" Run make
+nnoremap <Leader>m :make<CR>
 
 " Search and replace word under cursor
 nnoremap <Leader>* :%s/\<<C-r><C-w>\>//gc<LEFT><LEFT><LEFT>
@@ -273,7 +273,7 @@ if !exists(":DiffOrig")
 endif
 nnoremap <Leader>df :DiffOrig<CR>
 " Turn off the diff mode.
-nnoremap <Leader>do :Diffoff<CR>
+nnoremap <Leader>do :diffoff!<CR>
 
 " Strip trailing whitespace from lines.
 function! StripWhitespace()

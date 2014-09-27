@@ -1,7 +1,7 @@
 # Overview:
 
-My dotfiles got way too bloated to be portable. So this repo stores Vim configs
-& plugins managed through Vundle.
+My dotfiles got too bloated to be portable, this is a lightweight config &
+plugin installer for Vim. It uses Vundle for plugins, that's about it.
 
 # Usage:
 
