@@ -17,8 +17,6 @@
 function install_thru_brew() {
   # Install Vim
   brew install vim
-  # If caskroom/homebrew-cask is available install thru cask, else brew only.
-  brew cask install macvim || brew install macvim
   # Install ctags
   brew install ctags-exuberant
 }
@@ -27,10 +25,6 @@ function install_thru_brew() {
 function install_thru_apt() {
   # Install Vim
   sudo apt-get install -y vim
-  # If X windowing is available install GUI Vim.
-  if [ ! -z $(which X) ]; then
-    sudo apt-get install -y vim-gnome
-  fi
   # Install ctags
   sudo apt-get install -y exuberant-ctags
 }
@@ -39,10 +33,6 @@ function install_thru_apt() {
 function install_thru_yum() {
   # Install Vim
   sudo yum install -y vim
-  # If X windowing is available install GUI Vim.
-  if [ ! -z $(which X) ]; then
-    sudo yum install -y gvim
-  fi
   # Install ctags
   sudo yum install -y ctags
 }
