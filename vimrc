@@ -192,9 +192,6 @@ endif
 " Remap the Leader key to spacebar
 let mapleader=" "
 
-" Escape from insert mode
-inoremap jk <ESC>
-
 " List current buffers
 nnoremap <Leader>ls :ls<CR>
 
