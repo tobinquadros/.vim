@@ -35,7 +35,7 @@ Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
 
-" Note: use of tagbar depends on the ctags executable, see README.md.
+" Note: use of 'tagbar' depends on the ctags executable, see README.md.
 Plugin 'majutsushi/tagbar'
 
 " Required by Vundle, plugins must be added before this line.
@@ -192,7 +192,7 @@ endif
 " Remap the Leader key to spacebar
 let mapleader=" "
 
-" List current buffers
+" List current buffers, use {count}CTRL-^ to jump to file.
 nnoremap <Leader>ls :ls<CR>
 
 " Edit .vimrc file
@@ -211,40 +211,40 @@ nnoremap <Leader>hs :nohlsearch<CR>
 nnoremap <Leader>#= i#<SPACE><SPACE><ESC>78i=<ESC>lx
 nnoremap <Leader>/= i//<SPACE><SPACE><ESC>77i=<ESC>lx
 
-" Yank from cursor to end of line
+" Yank from cursor to end of line.
 nmap Y y$
 
-" Allow ctrl-n/ctrl-p to filter in command line mode
+" Allow ctrl-n/ctrl-p to filter in command line mode.
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
 
-" Open quickfix window, if window is open with no errors close window
-nnoremap <Leader>q :cwindow<CR>
+" Open quickfix window, close quickfix window.
+nnoremap <Leader>cw :cwindow<CR>
+nnoremap <Leader>ccl :cclose<CR>
 
-" Run make
+" Run make.
 nnoremap <Leader>m :make<CR>
 
-" Search and replace word under cursor
+" Search and replace word under cursor.
 nnoremap <Leader>* :%s/\<<C-r><C-w>\>//gc<LEFT><LEFT><LEFT>
 
-" Sudo write
+" Sudo write.
 nnoremap <Leader>sw :w !sudo tee % >/dev/null
 
 " CTAGS PLUGIN
 " Search order: current buffer dir, current working dir, system libraries
-" TODO: Make sure all the necessary directories are listed and indexed.
 set tags=./tags,tags,$HOME/.vim/systags;
+" To run ctags over the system libraries use command prompt:
+"   :!ctags -R -f $HOME/.vim/systags /usr/include /usr/local/include
 " To run ctags over the current working directory recursively.
 nnoremap <Leader>ct :!ctags -R .
-" To run ctags over the system libraries.
-nnoremap <Leader>sct :!ctags -R -f $HOME/.vim/systags /usr/include /usr/local/include
 
 " TAGBAR PLUGIN
 " Command for quick open and close upon selection.
 nnoremap <Leader>tb :TagbarOpenAutoClose<CR>
 
 " FUGITIVE PLUGIN
-" Git status
+" Git status.
 nnoremap <Leader>gs :Gstatus<CR>
 
 " VIMUX PLUGIN
