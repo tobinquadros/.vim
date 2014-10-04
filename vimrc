@@ -24,9 +24,10 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " Plugins on GitHub, see https://github.com/gmarik/Vundle.vim README.
+Plugin 'benmills/vimux'
 Plugin 'bling/vim-airline'
-Plugin 'scrooloose/syntastic'
 Plugin 'saltstack/salt-vim'
+Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-dispatch'
 Plugin 'tpope/vim-fugitive'
@@ -248,6 +249,18 @@ nnoremap <Leader>tb :TagbarOpenAutoClose<CR>
 " FUGITIVE PLUGIN
 " Git status
 nnoremap <Leader>gs :Gstatus<CR>
+
+" VIMUX PLUGIN
+" Prompt user to add options and execute current file. (must be executable)
+nnoremap <Leader>v% :VimuxPromptCommand("./" . expand('%:t') . " ")<CR>
+" Prompt for a command to run in the runner pane.
+nnoremap <Leader>v! :VimuxPromptCommand<CR><C-f>
+" Clear the runner terminal.
+nnoremap <Leader>vc :call VimuxRunCommand("clear")<CR>
+" Run last command executed by :VimuxRunCommand.
+nnoremap <Leader>vl :VimuxRunLastCommand<CR>
+" Close vim tmux runner opened by :VimuxRunCommand.
+nnoremap <Leader>vq :VimuxCloseRunner<CR>
 
 " ==============================================================================
 " INTERNAL VIM FUNCTIONS (W/ MAPPINGS)
