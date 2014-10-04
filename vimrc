@@ -62,35 +62,34 @@ else
   colorscheme default
 endif
 
-" Set fonts, encoding, and windowing for different environments.
-if &t_Co >= 256 || has("gui_running")
-  if has("gui_macvim")
-    set guifont=Monaco:h10
-  elseif has("gui_win32")
-    set guifont=Source_Code_Pro:h9:cANSI
-    " Fix jacked up Windows encoding
-    scriptencoding utf-8
-    " Maximize window at startup.
-    au GUIEnter * simalt ~x
-  endif
-endif
-
 " Enable highlighting for terminals with color
 if &t_Co > 2 || has("gui_running")
   syntax enable
+endif
+
+" Set fonts, encoding, and window size for Windows to make it bearable.
+if has("gui_win32")
+  " Set a decent font at least.
+  set guifont=Source_Code_Pro:h9:cANSI
+  " Fix jacked up Windows encoding
+  scriptencoding utf-8
+  " Maximize window at startup.
+  au GUIEnter * simalt ~x
 endif
 
 " ==============================================================================
 " OPTIONS
 " ==============================================================================
 
-" Enable mouse
+" Enable good mouse support.
+if has('mouse_sgr')
+    set ttymouse=sgr
+endif
 if has('mouse')
   set mouse=a
 endif
 
 " Editor windows
-set wrap " Text wraps at terminal edge
 set showbreak=... " Prefix for wrapped lines
 set showmatch " Show bracket matching on insert
 set matchtime=1
@@ -207,9 +206,6 @@ nnoremap <Leader>e. :edit .<CR>
 " Netrw the directory the file is in.
 nnoremap <Leader>E :Explore<CR>
 
-" Swap back and forth between file and netrw.
-nnoremap <Leader>re :Rexplore<CR>
-
 " Remove search highlights, keep history
 nnoremap <Leader>hs :nohlsearch<CR>
 
@@ -225,10 +221,7 @@ cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
 
 " Open quickfix window, if window is open with no errors close window
-nnoremap <Leader>Q :cwindow<CR>
-
-" Close quickfix window
-nnoremap <Leader>q :cclose<CR>
+nnoremap <Leader>q :cwindow<CR>
 
 " Run make
 nnoremap <Leader>m :make<CR>
