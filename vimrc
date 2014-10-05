@@ -24,6 +24,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " Plugins on GitHub, see https://github.com/gmarik/Vundle.vim README.
+Plugin 'Shougo/unite.vim'
 Plugin 'benmills/vimux'
 Plugin 'bling/vim-airline'
 Plugin 'saltstack/salt-vim'
@@ -239,13 +240,24 @@ set tags=./tags,tags,$HOME/.vim/systags;
 " To run ctags over the current working directory recursively.
 nnoremap <Leader>ct :!ctags -R .
 
+" FUGITIVE PLUGIN
+" Git status.
+nnoremap <Leader>gs :Gstatus<CR>
+
 " TAGBAR PLUGIN
 " Command for quick open and close upon selection.
 nnoremap <Leader>tb :TagbarOpenAutoClose<CR>
 
-" FUGITIVE PLUGIN
-" Git status.
-nnoremap <Leader>gs :Gstatus<CR>
+" UNITE PLUGIN
+" Like :ls, but united.
+nnoremap <Leader>ub :Unite buffer<CR>
+" List of files in current directory.
+nnoremap <Leader>uf :Unite file<CR>
+" List files recursively from current directory.
+nnoremap <Leader>ur :Unite file_rec<CR>
+" Search yank history.
+let g:unite_source_history_yank_enable = 1
+nnoremap <leader>uy :Unite history/yank<CR>
 
 " VIMUX PLUGIN
 " Prompt user to add options and execute current file. (must be executable)
