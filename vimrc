@@ -123,7 +123,6 @@ set wildignore+=*.jpg,*.jpeg,*.gif,*.png,*.gif,*.psd,*.wav,*.aiff,*.aif,*.mp3,*.
 
 " Registers and history
 set history=1000 " Save last 1000 commands from command line
-" set clipboard=unnamed " I believe this needs +xterm_clipboard compilation
 set pastetoggle=<F3> " Configure pastemode for external copy and paste
 
 " Buffers
@@ -144,11 +143,6 @@ set smartcase " Recognize case-sensitive input
 " ==============================================================================
 " FILETYPES & AUTOCOMMANDS
 " ==============================================================================
-
-" SYNTASTIC PLUGIN
-let g:syntastic_check_on_open=0 " Check syntax when file is opened
-let g:syntastic_aggregate_errors = 1 " Allow multiple checkers
-command! -nargs=* E Explore " Fix Explore conflict if needed
 
 if has("autocmd")
 
@@ -244,19 +238,26 @@ nnoremap <Leader>ct :!ctags -R .
 " Git status.
 nnoremap <Leader>gs :Gstatus<CR>
 
+" SYNTASTIC PLUGIN
+let g:syntastic_check_on_open=0 " Check syntax when file is opened
+let g:syntastic_aggregate_errors=1 " Allow multiple checkers
+command! -nargs=* E Explore " Fix Explore conflict if needed
+
 " TAGBAR PLUGIN
 " Command for quick open and close upon selection.
 nnoremap <Leader>tb :TagbarOpenAutoClose<CR>
 
 " UNITE PLUGIN
+" Ignore some things in file_rec modes.
+call unite#custom#source('file_rec,file_rec/async', 'ignore_pattern', 'node_modules')
 " Like :ls, but united.
-nnoremap <Leader>ub :Unite buffer<CR>
+nnoremap <Leader>ub :Unite -no-split -auto-preview buffer<CR>
 " List of files in current directory.
-nnoremap <Leader>uf :Unite file<CR>
+nnoremap <Leader>uf :Unite -no-split -auto-preview file<CR>
 " List files recursively from current directory.
 nnoremap <Leader>ur :Unite file_rec<CR>
 " Search yank history.
-let g:unite_source_history_yank_enable = 1
+let g:unite_source_history_yank_enable=1
 nnoremap <leader>uy :Unite history/yank<CR>
 
 " VIMUX PLUGIN
