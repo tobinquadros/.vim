@@ -1,5 +1,4 @@
 " vimrc
-" Author: Tobin Quadros
 
 " Leave these as the first settings.
 set nocompatible " Turn off vi compatible mode
@@ -9,7 +8,6 @@ filetype off
 " VUNDLE & PLUGIN's
 " :PluginList       - lists configured plugins
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
 " see :h vundle for more details or wiki for FAQ
 " ==============================================================================
@@ -92,6 +90,7 @@ if has('mouse')
 endif
 
 " Editor windows
+set nowrap " Don't wrap text til I say so
 set showbreak=... " Prefix for wrapped lines
 set showmatch " Show bracket matching on insert
 set matchtime=1
@@ -158,22 +157,13 @@ if has("autocmd")
     autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
     " Set Filetype specific tab and spacing
-    autocmd FileType text setlocal textwidth=80
-
-    " Change statusline color based on insert mode
-    if version >= 700
-      autocmd InsertEnter * hi StatusLine term=reverse ctermfg=245 ctermbg=52
-      autocmd InsertLeave * hi StatusLine term=reverse ctermfg=245 ctermbg=234
-    endif
+    autocmd FileType text setlocal textwidth=79
 
     " Restore cursor position from last session
     autocmd BufReadPost *
       \ if line("'\"") > 1 && line("'\"") <= line("$") |
       \   exe "normal! g`\"" |
       \ endif
-
-    " Source .vimrc immediately after write
-    autocmd BufWritePost .vimrc source %
 
   " Exit VIMRC augroup
   augroup end
@@ -189,6 +179,9 @@ let mapleader=" "
 
 " List current buffers, use {count}CTRL-^ to jump to file.
 nnoremap <Leader>ls :ls<CR>
+
+" Delete current buffer.
+nnoremap <Leader>bd :bd<CR>
 
 " Edit .vimrc file
 nnoremap <Leader>ev :edit $MYVIMRC<CR>
@@ -255,10 +248,14 @@ nnoremap <Leader>ub :Unite -no-split -auto-preview buffer<CR>
 " List of files in current directory.
 nnoremap <Leader>uf :Unite -no-split -auto-preview file<CR>
 " List files recursively from current directory.
-nnoremap <Leader>ur :Unite file_rec<CR>
+nnoremap <Leader>ur :Unite -no-split -auto-preview file_rec<CR>
 " Search yank history.
-let g:unite_source_history_yank_enable=1
+let g:unite_source_history_yank_enable = 1
 nnoremap <leader>uy :Unite history/yank<CR>
+
+" VIM-AIRLINE PLUGIN
+" Only show filenames in the tab bar at the top of window.
+let g:airline#extensions#tabline#fnamemod = ':t'
 
 " VIMUX PLUGIN
 " Prompt user to add options and execute current file. (must be executable)
