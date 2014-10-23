@@ -22,13 +22,11 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " Plugins on GitHub, see https://github.com/gmarik/Vundle.vim README.
-Plugin 'Shougo/unite.vim'
 Plugin 'benmills/vimux'
 Plugin 'bling/vim-airline'
 Plugin 'saltstack/salt-vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-dispatch'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
@@ -213,11 +211,14 @@ nnoremap <Leader>ccl :cclose<CR>
 " Run make.
 nnoremap <Leader>m :make<CR>
 
+" Make current file executable.
+nnoremap <Leader>x :!chmod +x %
+
 " Search and replace word under cursor.
 nnoremap <Leader>* :%s/\<<C-r><C-w>\>//gc<LEFT><LEFT><LEFT>
 
 " Sudo write.
-nnoremap <Leader>sw :w !sudo tee % >/dev/null
+nnoremap <Leader>sw :w !sudo tee % > /dev/null
 
 " CTAGS PLUGIN
 " Search order: current buffer dir, current working dir, system libraries
@@ -232,26 +233,16 @@ nnoremap <Leader>ct :!ctags -R .
 nnoremap <Leader>gs :Gstatus<CR>
 
 " SYNTASTIC PLUGIN
-let g:syntastic_check_on_open=0 " Check syntax when file is opened
-let g:syntastic_aggregate_errors=1 " Allow multiple checkers
-command! -nargs=* E Explore " Fix Explore conflict if needed
+" Check syntax when file is opened
+let g:syntastic_check_on_open = 0
+" Allow multiple checkers per file
+let g:syntastic_aggregate_errors = 1
+" Fix Explore conflict if needed.
+command! -nargs=* E Explore
 
 " TAGBAR PLUGIN
 " Command for quick open and close upon selection.
 nnoremap <Leader>tb :TagbarOpenAutoClose<CR>
-
-" UNITE PLUGIN
-" Ignore some things in file_rec modes.
-call unite#custom#source('file_rec,file_rec/async', 'ignore_pattern', 'node_modules')
-" Like :ls, but united.
-nnoremap <Leader>ub :Unite -no-split -auto-preview buffer<CR>
-" List of files in current directory.
-nnoremap <Leader>uf :Unite -no-split -auto-preview file<CR>
-" List files recursively from current directory.
-nnoremap <Leader>ur :Unite -no-split -auto-preview file_rec<CR>
-" Search yank history.
-let g:unite_source_history_yank_enable = 1
-nnoremap <leader>uy :Unite history/yank<CR>
 
 " VIM-AIRLINE PLUGIN
 " Only show filenames in the tab bar at the top of window.
@@ -268,6 +259,10 @@ nnoremap <Leader>vc :call VimuxRunCommand("clear")<CR>
 nnoremap <Leader>vl :VimuxRunLastCommand<CR>
 " Close vim tmux runner opened by :VimuxRunCommand.
 nnoremap <Leader>vq :VimuxCloseRunner<CR>
+" Run something special. (Change as needed)
+nnoremap <Leader>vs :w <bar> :call VimuxRunCommand("python contemplate_koans.py")<CR>
+" Run unittest.
+nnoremap <Leader>vu :w <bar> :call VimuxRunCommand("python -m unittest discover")<CR>
 
 " ==============================================================================
 " INTERNAL VIM FUNCTIONS (W/ MAPPINGS)
