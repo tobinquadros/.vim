@@ -22,6 +22,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " Plugins on GitHub, see https://github.com/gmarik/Vundle.vim README.
+Plugin 'Shougo/unite.vim'
 Plugin 'benmills/vimux'
 Plugin 'bling/vim-airline'
 Plugin 'saltstack/salt-vim'
@@ -79,7 +80,7 @@ endif
 " OPTIONS
 " ==============================================================================
 
-" Enable good mouse support.
+" Enable mouse support.
 if has('mouse_sgr')
     set ttymouse=sgr
 endif
@@ -88,6 +89,8 @@ if has('mouse')
 endif
 
 " Editor windows
+set splitbelow " Split horizontal window below current
+set splitright " Split vertical window to right of current
 set nowrap " Don't wrap text til I say so
 set showbreak=... " Prefix for wrapped lines
 set showmatch " Show bracket matching on insert
@@ -104,8 +107,6 @@ set tabstop=2 softtabstop=2 shiftwidth=2 expandtab " Global settings
 set omnifunc=syntaxcomplete#Complete " Set omni-completion method.
 
 " Statusbar
-" VIM-AIRLINE PLUGIN.
-let g:airline#extensions#tabline#enabled = 1
 set laststatus=2 " Always show statusbar
 set ruler " Show statusbar (line,column) numbers
 set report=0 " Always show number of lines changed
@@ -116,7 +117,7 @@ set showmode " Show INSERT, VISUAL, etc., on last line of screen
 set wildchar=<Tab> " Character pressed to use wildcard expansion
 set wildmenu " Make menu available after wildchar press
 set wildmode=longest:full,full " Wildchar functionality
-set wildignore+=*.jpg,*.jpeg,*.gif,*.png,*.gif,*.psd,*.wav,*.aiff,*.aif,*.mp3,*.mp4,*.wmv
+set wildignore+=*.jpg,*.jpeg,*.gif,*.png,*.gif,*.psd,*.wav,*.aiff,*.aif,*.mp3,*.mp4,*.wmv,*.sqlite3,tags
 
 " Registers and history
 set history=1000 " Save last 1000 commands from command line
@@ -128,8 +129,6 @@ set hidden " Allow window changes with unsaved buffers
 set nobackup " No backup made
 set nowritebackup " No backup made
 set noswapfile " Don't write .swp files
-set splitbelow " Split horizontal window below current
-set splitright " Split vertical window to right of current
 
 " Searching
 set hlsearch " Highlight search matches
@@ -206,7 +205,7 @@ cnoremap <C-n> <Down>
 
 " Open quickfix window, close quickfix window.
 nnoremap <Leader>cw :cwindow<CR>
-nnoremap <Leader>ccl :cclose<CR>
+nnoremap <Leader>cl :cclose<CR>
 
 " Run make.
 nnoremap <Leader>m :make<CR>
@@ -244,9 +243,20 @@ command! -nargs=* E Explore
 " Command for quick open and close upon selection.
 nnoremap <Leader>tb :TagbarOpenAutoClose<CR>
 
+" UNITE PLUGIN
+" Ignore some things in file_rec modes.
+call unite#custom#source('file_rec,file_rec/async', 'ignore_pattern', 'node_modules')
+" List files recursively from current directory.
+nnoremap <C-p> :Unite buffer file file_rec<CR>
+" Search yank history.
+let g:unite_source_history_yank_enable = 1
+nnoremap <C-n> :Unite<CR>
+
 " VIM-AIRLINE PLUGIN
 " Only show filenames in the tab bar at the top of window.
 let g:airline#extensions#tabline#fnamemod = ':t'
+" Required for statusbar.
+let g:airline#extensions#tabline#enabled = 1
 
 " VIMUX PLUGIN
 " Prompt user to add options and execute current file. (must be executable)

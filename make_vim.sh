@@ -55,7 +55,7 @@ function handle_plugins() {
   vim '+PluginInstall!' +qall
 }
 
-# Gracefully end the setup.
+# Perform any steps to end the setup.
 function clean_up() {
   echo "Install complete."
 }
