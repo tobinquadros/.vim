@@ -203,9 +203,8 @@ nmap Y y$
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
 
-" Open quickfix window, close quickfix window.
+" Open quickfix window, to close quickfix window use <C-w>c
 nnoremap <Leader>cw :cwindow<CR>
-nnoremap <Leader>cl :cclose<CR>
 
 " Run make.
 nnoremap <Leader>m :make<CR>
