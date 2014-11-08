@@ -1,16 +1,18 @@
 " vimrc
 
-" Leave these as the first settings.
+" LEAVE THESE AS THE FIRST SETTINGS.
 set nocompatible " Turn off vi compatible mode
 filetype off
 
+" Remap the Leader key to spacebar
+let mapleader=" "
+
 " ==============================================================================
-" VUNDLE & PLUGIN's
+" VUNDLE & PLUGIN's (in alphabetical order, Vundle.vim itself must be first)
+" ==============================================================================
 " :PluginList       - lists configured plugins
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-" see :h vundle for more details or wiki for FAQ
-" ==============================================================================
 
 " Required by Vundle, set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -18,34 +20,92 @@ set rtp+=~/.vim/bundle/Vundle.vim
 " Required by Vundle, keep plugin commands between vundle#begin/end.
 call vundle#begin()
 
-" Let Vundle manage Vundle, required
+" VUNDLE PLUGIN
+" Required by Vundle, let Vundle manage Vundle :)
 Plugin 'gmarik/Vundle.vim'
 
-" Plugins on GitHub, see https://github.com/gmarik/Vundle.vim README.
-Plugin 'Shougo/unite.vim'
-Plugin 'benmills/vimux'
-Plugin 'bling/vim-airline'
+" SALT-VIM PLUGIN
 Plugin 'saltstack/salt-vim'
-Plugin 'scrooloose/syntastic'
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-unimpaired'
 
+" SYNTASTIC PLUGIN
+Plugin 'scrooloose/syntastic'
+" Check syntax when file is opened
+let g:syntastic_check_on_open = 0
+" Allow multiple checkers per file
+let g:syntastic_aggregate_errors = 1
+" Fix Explore conflict if needed.
+command! -nargs=* E Explore
+
+" TAGBAR PLUGIN
 " Note: use of 'tagbar' depends on the ctags executable, see README.md.
-Plugin 'majutsushi/tagbar'
+if executable("ctags")
+  Plugin 'majutsushi/tagbar'
+  " TAGBAR PLUGIN
+  " Command for quick open and close upon selection.
+  nnoremap <Leader>tb :TagbarOpenAutoClose<CR>
+  " ctags search order: current buffer dir, current working dir, system libraries
+  set tags=./tags,tags,$HOME/.vim/systags;
+  " Run ctags over cwd recursively, specify tags file with -f /path/to/tags
+  nnoremap <Leader>ct :!ctags -R .
+endif
+
+" UNITE PLUGIN (see mappings after vundle#end, sources wouldn't load correctly here)
+Plugin 'Shougo/unite.vim'
+
+" VIMUX PLUGIN
+Plugin 'benmills/vimux'
+" Prompt user to add options and execute current file. (must be executable)
+nnoremap <Leader>v% :VimuxPromptCommand("./" . expand('%:t') . " ")<CR>
+" Prompt for a command to run in the runner pane.
+nnoremap <Leader>v! :VimuxPromptCommand<CR><C-f>
+" Clear the runner terminal.
+nnoremap <Leader>vc :call VimuxRunCommand("clear")<CR>
+" Run last command executed by :VimuxRunCommand.
+nnoremap <Leader>vl :VimuxRunLastCommand<CR>
+" Close vim tmux runner opened by :VimuxRunCommand.
+nnoremap <Leader>vq :VimuxCloseRunner<CR>
+" Run something special. (Change as needed)
+nnoremap <Leader>vs :w <bar> :call VimuxRunCommand("python contemplate_koans.py")<CR>
+" Run unittest.
+nnoremap <Leader>vu :w <bar> :call VimuxRunCommand("python -m unittest discover")<CR>
+
+" VIM-AIRLINE PLUGIN
+Plugin 'bling/vim-airline'
+" Only show filenames in the tab bar at the top of window.
+let g:airline#extensions#tabline#fnamemod = ':t'
+" Required for statusbar.
+let g:airline#extensions#tabline#enabled = 1
+
+" VIM-FUGITIVE PLUGIN
+Plugin 'tpope/vim-fugitive'
+" Git status.
+nnoremap <Leader>gs :Gstatus<CR>
+
+" VIM-COMMENTARY PLUGIN
+Plugin 'tpope/vim-commentary'
+
+" VIM-REPEAT PLUGIN
+Plugin 'tpope/vim-repeat'
+
+" VIM-SURROUND PLUGIN
+Plugin 'tpope/vim-surround'
+
+" VIM-UNIMPAIRED PLUGIN
+Plugin 'tpope/vim-unimpaired'
 
 " Required by Vundle, plugins must be added before this line.
 call vundle#end()
-
-" Required by Vundle, turn filetype stuff back on.
 filetype plugin indent on
 
-" Load matchit.vim, but only if the user hasn't installed a newer version.
-if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
-  runtime! macros/matchit.vim
-endif
+" UNITE PLUGIN (unite mappings must be placed after vundle#end or they don't work)
+" Enable searching the yank history.
+let g:unite_source_history_yank_enable = 1
+" Ignore some things in file_rec modes.
+call unite#custom#source('file_rec,file_rec/async', 'ignore_pattern', 'node_modules')
+" List files recursively from current directory.
+nnoremap <C-p> :Unite buffer file file_rec<CR>
+" Open unite with not functions called yet.
+nnoremap <C-n> :Unite<CR>
 
 " ==============================================================================
 " COLOR, FONT, & ENCODING
@@ -168,17 +228,17 @@ if has("autocmd")
 endif
 
 " ==============================================================================
-" MAPPINGS (plugins settings at the bottom)
+" MAPPINGS (alphabetical, plugin mappings are in the Vundle section)
 " ==============================================================================
-
-" Remap the Leader key to spacebar
-let mapleader=" "
-
-" List current buffers, use {count}CTRL-^ to jump to file.
-nnoremap <Leader>ls :ls<CR>
 
 " Delete current buffer.
 nnoremap <Leader>bd :bd<CR>
+
+" Open quickfix window, to close quickfix window use <C-w>c
+nnoremap <Leader>cw :cwindow<CR>
+
+" Netrw the directory the file is in.
+nnoremap <Leader>E :Explore<CR>
 
 " Edit .vimrc file
 nnoremap <Leader>ev :edit $MYVIMRC<CR>
@@ -186,92 +246,34 @@ nnoremap <Leader>ev :edit $MYVIMRC<CR>
 " Netrw the current working directory
 nnoremap <Leader>e. :edit .<CR>
 
-" Netrw the directory the file is in.
-nnoremap <Leader>E :Explore<CR>
-
 " Remove search highlights, keep history
 nnoremap <Leader>hs :nohlsearch<CR>
+
+" List current buffers, use {count}CTRL-^ to jump to file.
+nnoremap <Leader>ls :ls<CR>
+
+" Run make.
+nnoremap <Leader>m :make<CR>
+
+" Sudo write.
+nnoremap <Leader>sw :w !sudo tee % > /dev/null
+
+" Make current file executable.
+nnoremap <Leader>x :!chmod +x %
+
+" Yank from cursor to end of line.
+nmap Y y$
 
 " Insert divider for commenting
 nnoremap <Leader>#= i#<SPACE><SPACE><ESC>78i=<ESC>lx
 nnoremap <Leader>/= i//<SPACE><SPACE><ESC>77i=<ESC>lx
 
-" Yank from cursor to end of line.
-nmap Y y$
+" Search and replace word under cursor.
+nnoremap <Leader>* :%s/\<<C-r><C-w>\>//gc<LEFT><LEFT><LEFT>
 
 " Allow ctrl-n/ctrl-p to filter in command line mode.
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
-
-" Open quickfix window, to close quickfix window use <C-w>c
-nnoremap <Leader>cw :cwindow<CR>
-
-" Run make.
-nnoremap <Leader>m :make<CR>
-
-" Make current file executable.
-nnoremap <Leader>x :!chmod +x %
-
-" Search and replace word under cursor.
-nnoremap <Leader>* :%s/\<<C-r><C-w>\>//gc<LEFT><LEFT><LEFT>
-
-" Sudo write.
-nnoremap <Leader>sw :w !sudo tee % > /dev/null
-
-" CTAGS PLUGIN
-" Search order: current buffer dir, current working dir, system libraries
-set tags=./tags,tags,$HOME/.vim/systags;
-" To run ctags over the system libraries use command prompt:
-"   :!ctags -R -f $HOME/.vim/systags /usr/include /usr/local/include
-" To run ctags over the current working directory recursively.
-nnoremap <Leader>ct :!ctags -R .
-
-" FUGITIVE PLUGIN
-" Git status.
-nnoremap <Leader>gs :Gstatus<CR>
-
-" SYNTASTIC PLUGIN
-" Check syntax when file is opened
-let g:syntastic_check_on_open = 0
-" Allow multiple checkers per file
-let g:syntastic_aggregate_errors = 1
-" Fix Explore conflict if needed.
-command! -nargs=* E Explore
-
-" TAGBAR PLUGIN
-" Command for quick open and close upon selection.
-nnoremap <Leader>tb :TagbarOpenAutoClose<CR>
-
-" UNITE PLUGIN
-" Ignore some things in file_rec modes.
-call unite#custom#source('file_rec,file_rec/async', 'ignore_pattern', 'node_modules')
-" List files recursively from current directory.
-nnoremap <C-p> :Unite buffer file file_rec<CR>
-" Search yank history.
-let g:unite_source_history_yank_enable = 1
-nnoremap <C-n> :Unite<CR>
-
-" VIM-AIRLINE PLUGIN
-" Only show filenames in the tab bar at the top of window.
-let g:airline#extensions#tabline#fnamemod = ':t'
-" Required for statusbar.
-let g:airline#extensions#tabline#enabled = 1
-
-" VIMUX PLUGIN
-" Prompt user to add options and execute current file. (must be executable)
-nnoremap <Leader>v% :VimuxPromptCommand("./" . expand('%:t') . " ")<CR>
-" Prompt for a command to run in the runner pane.
-nnoremap <Leader>v! :VimuxPromptCommand<CR><C-f>
-" Clear the runner terminal.
-nnoremap <Leader>vc :call VimuxRunCommand("clear")<CR>
-" Run last command executed by :VimuxRunCommand.
-nnoremap <Leader>vl :VimuxRunLastCommand<CR>
-" Close vim tmux runner opened by :VimuxRunCommand.
-nnoremap <Leader>vq :VimuxCloseRunner<CR>
-" Run something special. (Change as needed)
-nnoremap <Leader>vs :w <bar> :call VimuxRunCommand("python contemplate_koans.py")<CR>
-" Run unittest.
-nnoremap <Leader>vu :w <bar> :call VimuxRunCommand("python -m unittest discover")<CR>
 
 " ==============================================================================
 " INTERNAL VIM FUNCTIONS (W/ MAPPINGS)
