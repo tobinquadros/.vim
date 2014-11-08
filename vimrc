@@ -1,4 +1,4 @@
-" vimrc
+" .vimrc
 
 " LEAVE THESE AS THE FIRST SETTINGS.
 set nocompatible " Turn off vi compatible mode
@@ -40,7 +40,6 @@ command! -nargs=* E Explore
 " Note: use of 'tagbar' depends on the ctags executable, see README.md.
 if executable("ctags")
   Plugin 'majutsushi/tagbar'
-  " TAGBAR PLUGIN
   " Command for quick open and close upon selection.
   nnoremap <Leader>tb :TagbarOpenAutoClose<CR>
   " ctags search order: current buffer dir, current working dir, system libraries
@@ -107,7 +106,7 @@ filetype plugin indent on
 " Enable searching the yank history.
 let g:unite_source_history_yank_enable = 1
 " Ignore some things in file_rec modes.
-call unite#custom#source('file_rec,file_rec/async', 'ignore_pattern', 'node_modules')
+silent! call unite#custom#source('file_rec,file_rec/async', 'ignore_pattern', 'node_modules')
 " List files recursively from current directory.
 nnoremap <C-p> :Unite buffer file file_rec<CR>
 " Open unite with not functions called yet.
@@ -122,9 +121,7 @@ set background=dark
 
 " Set colorscheme for 256 color terminals and GUI's
 if &t_Co >= 256 || has("gui_running")
-  colorscheme jellybeans
-else
-  colorscheme default
+  silent! colorscheme jellybeans
 endif
 
 " Enable highlighting for terminals with color
@@ -282,7 +279,7 @@ cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
 
 " ==============================================================================
-" INTERNAL VIM FUNCTIONS (W/ MAPPINGS)
+" USER-DEFINED FUNCTIONS (w/ mappings)
 " ==============================================================================
 
 " Diff between modified buffer and file saved on disk, think of this as one
