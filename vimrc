@@ -53,21 +53,24 @@ endif
 Plugin 'Shougo/unite.vim'
 
 " VIMUX PLUGIN
-Plugin 'benmills/vimux'
-" Prompt user to add options and execute current file. (must be executable)
-nnoremap <Leader>v% :VimuxPromptCommand("./" . expand('%:t') . " ")<CR>
-" Prompt for a command to run in the runner pane.
-nnoremap <Leader>v! :VimuxPromptCommand<CR><C-f>
-" Clear the runner terminal.
-nnoremap <Leader>vc :call VimuxRunCommand("clear")<CR>
-" Run last command executed by :VimuxRunCommand.
-nnoremap <Leader>vl :VimuxRunLastCommand<CR>
-" Close vim tmux runner opened by :VimuxRunCommand.
-nnoremap <Leader>vq :VimuxCloseRunner<CR>
-" Run something special. (Change as needed)
-nnoremap <Leader>vs :w <bar> :call VimuxRunCommand("python contemplate_koans.py")<CR>
-" Run unittest.
-nnoremap <Leader>vu :w <bar> :call VimuxRunCommand("python -m unittest discover")<CR>
+" Note: use of 'vimux' depends on the tmux executable, see README.md.
+if executable("tmux")
+  Plugin 'benmills/vimux'
+  " Prompt user to add options and execute current file. (must be executable)
+  nnoremap <Leader>v% :VimuxPromptCommand("./" . expand('%:t') . " ")<CR>
+  " Prompt for a command to run in the runner pane.
+  nnoremap <Leader>v! :VimuxPromptCommand<CR><C-f>
+  " Clear the runner terminal.
+  nnoremap <Leader>vc :call VimuxRunCommand("clear")<CR>
+  " Run last command executed by :VimuxRunCommand.
+  nnoremap <Leader>vl :VimuxRunLastCommand<CR>
+  " Close vim tmux runner opened by :VimuxRunCommand.
+  nnoremap <Leader>vq :VimuxCloseRunner<CR>
+  " Run something special. (Change as needed)
+  nnoremap <Leader>vs :w <bar> :call VimuxRunCommand("python contemplate_koans.py")<CR>
+  " Run unittest.
+  nnoremap <Leader>vu :w <bar> :call VimuxRunCommand("python -m unittest discover")<CR>
+endif
 
 " VIM-AIRLINE PLUGIN
 Plugin 'bling/vim-airline'
@@ -77,9 +80,12 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#enabled = 1
 
 " VIM-FUGITIVE PLUGIN
-Plugin 'tpope/vim-fugitive'
-" Git status.
-nnoremap <Leader>gs :Gstatus<CR>
+" Note: use of 'vim-fugitive' depends on the git executable, see README.md.
+if executable("git")
+  Plugin 'tpope/vim-fugitive'
+  " Git status.
+  nnoremap <Leader>gs :Gstatus<CR>
+endif
 
 " VIM-COMMENTARY PLUGIN
 Plugin 'tpope/vim-commentary'
