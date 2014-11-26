@@ -1,6 +1,7 @@
 # .gitignore for Vim repository
 
 .netrwhist
+.netrwbook
 tags
 systags
 bundle/

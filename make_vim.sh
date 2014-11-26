@@ -55,11 +55,6 @@ function handle_plugins() {
   vim '+PluginInstall!' +qall
 }
 
-# Perform any steps to end the setup.
-function clean_up() {
-  echo "Install complete."
-}
-
 # ==============================================================================
 # Main
 # ==============================================================================
@@ -78,20 +73,9 @@ else
 fi
 
 # Check if plugins should be ignored.
-# Used single equal (=) sign is for posix compliance.
 if [ "$1" = "--no-plugins" ]; then
-  HANDLE_PLUGINS=0
-else
-  HANDLE_PLUGINS=1
-fi
-
-# If set, update or install plugins.
-if [ $HANDLE_PLUGINS -eq 1 ]; then
-  handle_plugins
-else
   echo "Skipping Vundle plugin installations and updates."
+else
+  handle_plugins
 fi
-
-# Clean up any mess and say goodbye.
-clean_up
 
