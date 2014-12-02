@@ -1,4 +1,4 @@
-# Overview:
+# .vim overview:
 
 My dotfiles got too bloated to be portable, this is a fairly lightweight config
 & plugin installer for Vim on various operating systems. It uses Vundle for
@@ -6,10 +6,14 @@ plugins, and a bash script to install, that's about it.
 
 ## On MacOSX (Homebrew) & Linux (APT/YUM):
 
-```bash
-git clone https://github.com/tobinquadros/Vim ~/.vim
+If the .vim directory already exists you will need to remove it first:
 
-cd ~/.vim
+```bash
+cd ~
+
+rm -rf .vim
+
+git clone https://github.com/tobinquadros/.vim ~/.vim
 
 ./make_vim.sh
 ```
@@ -19,7 +23,7 @@ cd ~/.vim
 _This still requires a bash shell. Use Git Bash or Cygwin to start a terminal._
 
 ```bash
-git clone https://github.com/tobinquadros/Vim $HOME/vimfiles
+git clone https://github.com/tobinquadros/.vim $HOME/vimfiles
 
 cd $HOME/vimfiles
 
