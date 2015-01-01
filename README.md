@@ -1,4 +1,4 @@
-# .vim overview:
+# Overview:
 
 My dotfiles got too bloated to be portable, this is a fairly lightweight config
 & plugin installer for Vim on various operating systems. It uses Vundle for
