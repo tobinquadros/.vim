@@ -60,11 +60,11 @@ function handle_plugins() {
 # ==============================================================================
 
 # Pretty crappy but it works for now.
-if [ ! -z $(which brew) ]; then
+if [ -x $(which brew) ]; then
   install_thru_brew
-elif [ ! -z $(which apt-get) ]; then
+elif [ -x $(which apt-get) ]; then
   install_thru_apt
-elif [ ! -z $(which yum) ]; then
+elif [ -x $(which yum) ]; then
   install_thru_yum
 elif [ $(uname) = "MINGW32"* ]; then
   echo "You seem to be running Windows, please see the README.md"; echo ""
