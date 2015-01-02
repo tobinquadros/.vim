@@ -65,8 +65,10 @@ if executable("tmux")
   nnoremap <Leader>vl :VimuxRunLastCommand<CR>
   " Close vim tmux runner opened by :VimuxRunCommand.
   nnoremap <Leader>vq :VimuxCloseRunner<CR>
-  " Run something special. (Change as needed)
-  nnoremap <Leader>vs :w <bar> :call VimuxRunCommand("python contemplate_koans.py")<CR>
+  " Run with Python interpreter
+  nnoremap <Leader>vp :VimuxPromptCommand("python " . expand("%") . " ")<CR>
+  " Run setup.py testsuite
+  nnoremap <Leader>vt :w <bar> :call VimuxRunCommand("python setup.py test")<CR>
   " Run unittest.
   nnoremap <Leader>vu :w <bar> :call VimuxRunCommand("python -m unittest discover")<CR>
 endif
