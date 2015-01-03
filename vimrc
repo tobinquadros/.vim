@@ -220,6 +220,7 @@ if has("autocmd")
 
     " Set Filetype specific tab and spacing
     autocmd FileType text setlocal textwidth=79
+    autocmd BufRead *.py inoremap # X<c-h>#
 
     " Restore cursor position from last session
     autocmd BufReadPost *
