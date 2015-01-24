@@ -68,7 +68,9 @@ if executable("tmux")
   " Run with Python interpreter
   nnoremap <Leader>vp :VimuxPromptCommand("python " . expand("%") . " ")<CR>
   " Run setup.py testsuite
-  nnoremap <Leader>vt :w <bar> :call VimuxRunCommand("python setup.py test")<CR>
+  nnoremap <Leader>v2 :w <bar> :call VimuxRunCommand("python setup.py test")<CR>
+  " Run setup.py testsuite
+  nnoremap <Leader>v3 :w <bar> :call VimuxRunCommand("python3 setup.py test")<CR>
   " Run unittest.
   nnoremap <Leader>vu :w <bar> :call VimuxRunCommand("python -m unittest discover")<CR>
 endif
