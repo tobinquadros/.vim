@@ -82,6 +82,12 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 " Required for statusbar.
 let g:airline#extensions#tabline#enabled = 1
 
+" VIM-ANGULAR PLUGIN
+Plugin 'burnettk/vim-angular'
+
+" VIM-COMMENTARY PLUGIN
+Plugin 'tpope/vim-commentary'
+
 " VIM-FUGITIVE PLUGIN
 " Note: use of 'vim-fugitive' depends on the git executable, see README.md.
 if executable("git")
@@ -90,8 +96,8 @@ if executable("git")
   nnoremap <Leader>gs :Gstatus<CR>
 endif
 
-" VIM-COMMENTARY PLUGIN
-Plugin 'tpope/vim-commentary'
+" VIM-PUPPET PLUGIN
+Plugin 'rodjek/vim-puppet'
 
 " VIM-REPEAT PLUGIN
 Plugin 'tpope/vim-repeat'
