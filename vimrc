@@ -10,9 +10,6 @@ let mapleader=" "
 " ==============================================================================
 " VUNDLE & PLUGIN's (in alphabetical order, Vundle.vim itself must be first)
 " ==============================================================================
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
 
 " Required by Vundle, set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -20,12 +17,15 @@ set rtp+=~/.vim/bundle/Vundle.vim
 " Required by Vundle, keep plugin commands between vundle#begin/end.
 call vundle#begin()
 
-" VUNDLE PLUGIN
-" Required by Vundle, let Vundle manage Vundle :)
+" VUNDLE PLUGIN, required by Vundle, let Vundle manage Vundle :)
 Plugin 'gmarik/Vundle.vim'
 
-" SALT-VIM PLUGIN
-Plugin 'saltstack/salt-vim'
+" FZF PLUGIN
+if executable("fzf")
+  set rtp+=~/.fzf
+  Plugin 'junegunn/fzf'
+  nnoremap <Leader>fe :FZF<CR>
+endif
 
 " SYNTASTIC PLUGIN
 Plugin 'scrooloose/syntastic'
@@ -47,9 +47,6 @@ if executable("ctags")
   " Run ctags over cwd recursively, specify tags file with -f /path/to/tags
   nnoremap <Leader>ct :!ctags -R .
 endif
-
-" UNITE PLUGIN (see mappings after vundle#end, sources wouldn't load correctly here)
-Plugin 'Shougo/unite.vim'
 
 " VIMUX PLUGIN
 " Note: use of 'vimux' depends on the tmux executable, see README.md.
@@ -78,9 +75,6 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 " Required for statusbar.
 let g:airline#extensions#tabline#enabled = 1
 
-" VIM-ANGULAR PLUGIN
-Plugin 'burnettk/vim-angular'
-
 " VIM-COMMENTARY PLUGIN
 Plugin 'tpope/vim-commentary'
 
@@ -91,9 +85,6 @@ if executable("git")
   " Git status.
   nnoremap <Leader>gs :Gstatus<CR>
 endif
-
-" VIM-PUPPET PLUGIN
-Plugin 'rodjek/vim-puppet'
 
 " VIM-REPEAT PLUGIN
 Plugin 'tpope/vim-repeat'
@@ -107,16 +98,6 @@ Plugin 'tpope/vim-unimpaired'
 " Required by Vundle, plugins must be added before this line.
 call vundle#end()
 filetype plugin indent on
-
-" UNITE PLUGIN (unite mappings must be placed after vundle#end or they don't work)
-" Enable searching the yank history.
-let g:unite_source_history_yank_enable = 1
-" Ignore some things in file_rec modes.
-silent! call unite#custom#source('file_rec,file_rec/async', 'ignore_pattern', '.git/', 'node_modules/', 'bower_components/')
-" List files recursively from current directory.
-nnoremap <C-p> :Unite buffer file file_rec<CR>
-" Open unite with not functions called yet.
-nnoremap <C-n> :Unite<CR>
 
 " ==============================================================================
 " COLOR, FONT, & ENCODING
