@@ -228,14 +228,15 @@ nnoremap <Leader>bd :bd<CR>
 " Open quickfix window, to close quickfix window use <C-w>c
 nnoremap <Leader>cw :cwindow<CR>
 
-" Netrw the directory the file is in.
+" Enter netrw
+nnoremap <Leader>e. :edit .<CR>
 nnoremap <Leader>E :Explore<CR>
 
 " Edit .vimrc file
 nnoremap <Leader>ev :edit $MYVIMRC<CR>
 
-" Netrw the current working directory
-nnoremap <Leader>e. :edit .<CR>
+" Edit files in same directory as current file
+nnoremap <Leader>ew :edit <C-R>=expand("%:p:h")."/"<CR>
 
 " Remove search highlights, keep history
 nnoremap <Leader>hs :nohlsearch<CR>
