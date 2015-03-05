@@ -243,17 +243,11 @@ nnoremap <Leader>hs :nohlsearch<CR>
 " List current buffers, use {count}CTRL-^ to jump to file.
 nnoremap <Leader>ls :ls<CR>
 
-" Run make.
-nnoremap <Leader>m :make<CR>
-
 " Sudo write.
 nnoremap <Leader>sw :w !sudo tee % > /dev/null
 
 " Make current file executable.
 nnoremap <Leader>x :!chmod +x %
-
-" Yank from cursor to end of line.
-nmap Y y$
 
 " Insert divider for commenting
 nnoremap <Leader>#= i#<SPACE><SPACE><ESC>78i=<ESC>lx
