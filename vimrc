@@ -112,7 +112,7 @@ filetype plugin indent on
 " Enable searching the yank history.
 let g:unite_source_history_yank_enable = 1
 " Ignore some things in file_rec modes.
-silent! call unite#custom#source('file_rec,file_rec/async', 'ignore_pattern', 'node_modules')
+silent! call unite#custom#source('file_rec,file_rec/async', 'ignore_pattern', '.git/', 'node_modules/', 'bower_components/')
 " List files recursively from current directory.
 nnoremap <C-p> :Unite buffer file file_rec<CR>
 " Open unite with not functions called yet.
