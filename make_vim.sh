@@ -51,7 +51,8 @@ function handle_plugins() {
     git clone https://github.com/gmarik/Vundle.vim.git $DIR/bundle/Vundle.vim
   fi
 
-  # Run the Vundle plugin update and install function.
+  # Run the Vundle plugin clean, update, and install
+  vim '+PluginClean!' +qall
   vim '+PluginInstall!' +qall
 }
 

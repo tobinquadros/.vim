@@ -8,26 +8,29 @@ filetype off
 let mapleader=" "
 
 " ==============================================================================
-" VUNDLE & PLUGIN's (in alphabetical order, Vundle.vim itself must be first)
+" VUNDLE & PLUGIN's
 " ==============================================================================
 
 " Required by Vundle, set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 
-" Required by Vundle, keep plugin commands between vundle#begin/end.
+" Required by Vundle, keep plugin commands between vundle#begin/end
 call vundle#begin()
 
-" VUNDLE PLUGIN, required by Vundle, let Vundle manage Vundle :)
+" VUNDLE PLUGIN is required to be listed first
 Plugin 'gmarik/Vundle.vim'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-unimpaired'
 
-" FZF PLUGIN
+" FZF PLUGIN + CONFIG
 if executable("fzf")
-  set rtp+=~/.fzf
   Plugin 'junegunn/fzf'
   nnoremap <Leader>fe :FZF<CR>
 endif
 
-" SYNTASTIC PLUGIN
+" SYNTASTIC PLUGIN + CONFIG
 Plugin 'scrooloose/syntastic'
 " Check syntax when file is opened
 let g:syntastic_check_on_open = 0
@@ -36,8 +39,7 @@ let g:syntastic_aggregate_errors = 1
 " Fix Explore conflict if needed.
 command! -nargs=* E Explore
 
-" TAGBAR PLUGIN
-" Note: use of 'tagbar' depends on the ctags executable, see README.md.
+" TAGBAR PLUGIN + CONFIG
 if executable("ctags")
   Plugin 'majutsushi/tagbar'
   " Command for quick open and close upon selection.
@@ -48,8 +50,7 @@ if executable("ctags")
   nnoremap <Leader>ct :!ctags -R .
 endif
 
-" VIMUX PLUGIN
-" Note: use of 'vimux' depends on the tmux executable, see README.md.
+" VIMUX PLUGIN + CONFIG
 if executable("tmux")
   Plugin 'benmills/vimux'
   " Prompt to run any shell command.
@@ -68,32 +69,19 @@ if executable("tmux")
   nnoremap <Leader>vq :VimuxCloseRunner<CR>
 endif
 
-" VIM-AIRLINE PLUGIN
+" VIM-AIRLINE PLUGIN + CONFIG
 Plugin 'bling/vim-airline'
 " Only show filenames in the tab bar at the top of window.
 let g:airline#extensions#tabline#fnamemod = ':t'
 " Required for statusbar.
 let g:airline#extensions#tabline#enabled = 1
 
-" VIM-COMMENTARY PLUGIN
-Plugin 'tpope/vim-commentary'
-
-" VIM-FUGITIVE PLUGIN
-" Note: use of 'vim-fugitive' depends on the git executable, see README.md.
+" VIM-FUGITIVE PLUGIN + CONFIG
 if executable("git")
   Plugin 'tpope/vim-fugitive'
   " Git status.
   nnoremap <Leader>gs :Gstatus<CR>
 endif
-
-" VIM-REPEAT PLUGIN
-Plugin 'tpope/vim-repeat'
-
-" VIM-SURROUND PLUGIN
-Plugin 'tpope/vim-surround'
-
-" VIM-UNIMPAIRED PLUGIN
-Plugin 'tpope/vim-unimpaired'
 
 " Required by Vundle, plugins must be added before this line.
 call vundle#end()
