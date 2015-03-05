@@ -55,24 +55,20 @@ Plugin 'Shougo/unite.vim'
 " Note: use of 'vimux' depends on the tmux executable, see README.md.
 if executable("tmux")
   Plugin 'benmills/vimux'
-  " Prompt user to add options and execute current file. (must be executable)
-  nnoremap <Leader>v% :VimuxPromptCommand("./" . expand('%:t') . " ")<CR>
-  " Prompt for a command to run in the runner pane.
+  " Prompt to run any shell command.
   nnoremap <Leader>v! :VimuxPromptCommand<CR><C-f>
-  " Clear the runner terminal.
-  nnoremap <Leader>vc :call VimuxRunCommand("clear")<CR>
+  " Prompt to run current file from the shell, must be executable.
+  nnoremap <Leader>v. :VimuxPromptCommand("./" . expand('%:t') . " ")<CR>
+  " Prompt to run current file with Python interpreter
+  nnoremap <Leader>vp :VimuxPromptCommand("python " . expand("%") . " ")<CR>
+  " Prompt to run current file with Ruby interpreter
+  nnoremap <Leader>vr :VimuxPromptCommand("ruby " . expand("%") . " ")<CR>
   " Run last command executed by :VimuxRunCommand.
   nnoremap <Leader>vl :VimuxRunLastCommand<CR>
+  " Clear the runner terminal.
+  nnoremap <Leader>vc :call VimuxRunCommand("clear")<CR>
   " Close vim tmux runner opened by :VimuxRunCommand.
   nnoremap <Leader>vq :VimuxCloseRunner<CR>
-  " Run with Python interpreter
-  nnoremap <Leader>vp :VimuxPromptCommand("python " . expand("%") . " ")<CR>
-  " Run setup.py testsuite
-  nnoremap <Leader>v2 :w <bar> :call VimuxRunCommand("python setup.py test")<CR>
-  " Run setup.py testsuite
-  nnoremap <Leader>v3 :w <bar> :call VimuxRunCommand("python3 setup.py test")<CR>
-  " Run unittest.
-  nnoremap <Leader>vu :w <bar> :call VimuxRunCommand("python -m unittest discover")<CR>
 endif
 
 " VIM-AIRLINE PLUGIN
