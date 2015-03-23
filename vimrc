@@ -239,8 +239,9 @@ nnoremap <Leader>cw :cwindow<CR>
 nnoremap <Leader>e. :edit .<CR>
 nnoremap <Leader>E :Explore<CR>
 
-" Edit .vimrc file
+" Edit vimrc file, source vimrc
 nnoremap <Leader>ev :edit $MYVIMRC<CR>
+nnoremap <leader>sv :source $MYVIMRC<cr>
 
 " Edit files in same directory as current file
 nnoremap <Leader>ew :edit <C-R>=expand("%:p:h")."/"<CR>
