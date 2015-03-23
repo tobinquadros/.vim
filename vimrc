@@ -27,7 +27,26 @@ Plugin 'tpope/vim-unimpaired'
 " FZF PLUGIN + CONFIG
 if executable("fzf")
   Plugin 'junegunn/fzf'
-  nnoremap <Leader>fe :FZF<CR>
+  " Locate all files
+  command! -nargs=1 Locate call fzf#run({'source': 'locate <q-args>', 'sink': 'e', 'options': '-m'})
+  nnoremap <C-p> :Locate <C-R>=getcwd()<CR><CR>
+  nnoremap <C-n> :Locate /<CR>
+  " List of buffers
+  function! BufList()
+    redir => ls
+    silent ls
+    redir END
+    return split(ls, '\n')
+  endfunction
+  function! BufOpen(e)
+    execute 'buffer '. matchstr(a:e, '^[ 0-9]*')
+  endfunction
+  nnoremap <silent> <C-l> :call fzf#run({
+  \   'source':  reverse(BufList()),
+  \   'sink':    function('BufOpen'),
+  \   'options': '+m',
+  \   'down':    '40%'
+  \ })<CR>
 endif
 
 " SYNTASTIC PLUGIN + CONFIG
@@ -228,9 +247,6 @@ nnoremap <Leader>ew :edit <C-R>=expand("%:p:h")."/"<CR>
 
 " Remove search highlights, keep history
 nnoremap <Leader>hs :nohlsearch<CR>
-
-" List current buffers, use {count}CTRL-^ to jump to file.
-nnoremap <Leader>ls :ls<CR>
 
 " Sudo write.
 nnoremap <Leader>sw :w !sudo tee % > /dev/null
