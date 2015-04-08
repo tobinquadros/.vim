@@ -266,6 +266,9 @@ nnoremap <Leader>/= i//<SPACE><SPACE><ESC>77i=<ESC>lx
 " Search and replace word under cursor.
 nnoremap <Leader>* :%s/\<<C-r><C-w>\>//gc<LEFT><LEFT><LEFT>
 
+" Vimgrep
+nnoremap <Leader># :vimgrep '' **/*<LEFT><LEFT><LEFT><LEFT><LEFT><LEFT>
+
 " Allow ctrl-n/ctrl-p to filter in command line mode.
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
