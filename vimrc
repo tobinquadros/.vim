@@ -232,8 +232,12 @@ endif
 " Delete current buffer.
 nnoremap <Leader>bd :bd<CR>
 
-" Open quickfix window, to close quickfix window use <C-w>c
+" Quickfix window
 nnoremap <Leader>cw :cwindow<CR>
+nnoremap <Leader>cq :cclose<CR>
+nnoremap <Leader>cn :cnext<CR>
+nnoremap <Leader>cN :cNext<CR>
+nnoremap <Leader>cp :cprevious<CR>
 
 " Enter netrw
 nnoremap <Leader>e. :edit .<CR>
