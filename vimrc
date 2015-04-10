@@ -234,6 +234,7 @@ nnoremap <Leader>bd :bd<CR>
 
 " Quickfix window
 nnoremap <Leader>cw :cwindow<CR>
+nnoremap <Leader>ccl :cclose<CR>
 nnoremap <Leader>cq :cclose<CR>
 nnoremap <Leader>cn :cnext<CR>
 nnoremap <Leader>cN :cNext<CR>
