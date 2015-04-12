@@ -248,9 +248,6 @@ nnoremap <Leader>E :Explore<CR>
 nnoremap <Leader>ev :edit $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
-" Edit files in same directory as current file
-nnoremap <Leader>ew :edit <C-R>=expand("%:p:h")."/"<CR>
-
 " Remove search highlights, keep history
 nnoremap <Leader>hs :nohlsearch<CR>
 
