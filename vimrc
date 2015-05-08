@@ -24,31 +24,6 @@ Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
 
-" FZF PLUGIN + CONFIG
-if executable("fzf")
-  Plugin 'junegunn/fzf'
-  " Locate all files
-  command! -nargs=1 Locate call fzf#run({'source': 'locate <q-args>', 'sink': 'e', 'options': '-m'})
-  nnoremap <C-p> :Locate <C-R>=getcwd()<CR><CR>
-  nnoremap <C-n> :Locate /<CR>
-  " List of buffers
-  function! BufList()
-    redir => ls
-    silent ls
-    redir END
-    return split(ls, '\n')
-  endfunction
-  function! BufOpen(e)
-    execute 'buffer '. matchstr(a:e, '^[ 0-9]*')
-  endfunction
-  nnoremap <silent> <C-l> :call fzf#run({
-  \   'source':  reverse(BufList()),
-  \   'sink':    function('BufOpen'),
-  \   'options': '+m',
-  \   'down':    '40%'
-  \ })<CR>
-endif
-
 " SYNTASTIC PLUGIN + CONFIG
 Plugin 'scrooloose/syntastic'
 " Check syntax when file is opened
@@ -231,6 +206,8 @@ endif
 
 " Delete current buffer.
 nnoremap <Leader>bd :bd<CR>
+nnoremap <C-n> :bnext<CR>
+nnoremap <C-p> :bprevious<CR>
 
 " Quickfix window
 nnoremap <Leader>cw :cwindow<CR>
