@@ -2,7 +2,7 @@
 
 " LEAVE THESE AS THE FIRST SETTINGS.
 set nocompatible " Turn off vi compatible mode
-filetype off
+filetype off " This is turned back on after loading plugins
 
 " Remap the Leader key to spacebar
 let mapleader=" "
@@ -235,7 +235,6 @@ nnoremap <Leader>bd :bd<CR>
 " Quickfix window
 nnoremap <Leader>cw :cwindow<CR>
 nnoremap <Leader>ccl :cclose<CR>
-nnoremap <Leader>cq :cclose<CR>
 nnoremap <Leader>cn :cnext<CR>
 nnoremap <Leader>cN :cNext<CR>
 nnoremap <Leader>cp :cprevious<CR>
@@ -274,21 +273,6 @@ cnoremap <C-n> <Down>
 " ==============================================================================
 " USER-DEFINED FUNCTIONS (w/ mappings)
 " ==============================================================================
-
-" Diff between modified buffer and file saved on disk, think of this as one
-" step before a git diff because the file hasn't even been saved yet.
-"   Use [c to jump back, or ]c to jump forward by changes.
-"   Jump into the buffer you'd like to work from.
-"   To obtain changes from the other file TYPE: do (the o is for obtain)
-"   To put changes TYPE: dp
-" USAGE: See :h :diff
-if !exists(":DiffOrig")
-  command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
-    \ | wincmd p | diffthis
-endif
-nnoremap <Leader>df :DiffOrig<CR>
-" Turn off the diff mode.
-nnoremap <Leader>do :diffoff!<CR>
 
 " Strip trailing whitespace from lines.
 function! StripWhitespace()
