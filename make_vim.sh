@@ -19,6 +19,10 @@ function install_thru_brew() {
   brew install vim
   # Install ctags
   brew install ctags
+
+  # Install NeoVim for shits and gigs
+  brew tap neovim/neovim
+  brew install --HEAD neovim
 }
 
 # For APT managed systems.
