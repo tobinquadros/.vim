@@ -3,6 +3,7 @@
 " LEAVE THESE AS THE FIRST SETTINGS.
 set nocompatible " Turn off vi compatible mode
 filetype off " This is turned back on after loading plugins
+runtime macros/matchit.vim " Enable better block matching
 
 " Remap the Leader key to spacebar
 let mapleader=" "
