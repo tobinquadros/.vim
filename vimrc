@@ -19,6 +19,8 @@ call vundle#begin()
 
 " VUNDLE PLUGIN is required to be listed first
 Plugin 'gmarik/Vundle.vim'
+
+" Plugins that don't have special configuration
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
@@ -126,7 +128,7 @@ set splitright " Split vertical window to right of current
 set nowrap " Don't wrap text til I say so
 set showbreak=... " Prefix for wrapped lines
 set showmatch " Show bracket matching on insert
-set matchtime=1
+set matchtime=1 " Show bracket match for n/10 seconds
 set list listchars=tab:→·,trail:·,nbsp:_,extends:» " show extra space characters
 set number " Show line numbers
 set scrolloff=2 " Scroll cursor padding (top and bottom)
