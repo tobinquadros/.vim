@@ -52,18 +52,8 @@ if executable("tmux")
   Plugin 'benmills/vimux'
   " Prompt to run any shell command.
   nnoremap <Leader>v! :VimuxPromptCommand<CR><C-f>
-  " Prompt to run current file from the shell, must be executable.
-  nnoremap <Leader>v. :VimuxPromptCommand("./" . expand('%:t') . " ")<CR>
-  " Prompt to run current file with Python interpreter
-  nnoremap <Leader>vp :VimuxPromptCommand("python " . expand("%") . " ")<CR>
-  " Prompt to run current file with Ruby interpreter
-  nnoremap <Leader>vr :VimuxPromptCommand("ruby " . expand("%") . " ")<CR>
   " Run last command executed by :VimuxRunCommand.
   nnoremap <Leader>vl :VimuxRunLastCommand<CR>
-  " Clear the runner terminal.
-  nnoremap <Leader>vc :call VimuxRunCommand("clear")<CR>
-  " Close vim tmux runner opened by :VimuxRunCommand.
-  nnoremap <Leader>vq :VimuxCloseRunner<CR>
 endif
 
 " VIM-AIRLINE PLUGIN + CONFIG
