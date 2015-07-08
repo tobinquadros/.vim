@@ -234,3 +234,16 @@ function! StripWhitespace()
 endfunction
 nnoremap <Leader>ws :call StripWhitespace()<CR>
 
+" Populate arglist with files from quickfix list
+command! -nargs=0 -bar Qargs execute 'args' QuickfixFilenames()
+function! QuickfixFilenames()
+  let buffer_numbers = {}
+  for quickfix_item in getqflist()
+    let bufnr = quickfix_item['bufnr']
+    if bufnr > 0
+      let buffer_numbers[bufnr] = bufname(bufnr)
+    endif
+  endfor
+  return join(map(values(buffer_numbers), 'fnameescape(v:val)'))
+endfunction
+
