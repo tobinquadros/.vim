@@ -84,16 +84,6 @@ if &t_Co > 2 || has("gui_running")
   syntax enable
 endif
 
-" Set fonts, encoding, and window size for Windows to make it bearable.
-if has("gui_win32")
-  " Set a decent font at least.
-  set guifont=Source_Code_Pro:h9:cANSI
-  " Fix jacked up Windows encoding
-  scriptencoding utf-8
-  " Maximize window at startup.
-  au GUIEnter * simalt ~x
-endif
-
 " ==============================================================================
 " OPTIONS
 " ==============================================================================
