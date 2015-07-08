@@ -63,13 +63,6 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 " Required for statusbar.
 let g:airline#extensions#tabline#enabled = 1
 
-" VIM-FUGITIVE PLUGIN + CONFIG
-if executable("git")
-  Plugin 'tpope/vim-fugitive'
-  " Git status.
-  nnoremap <Leader>gs :Gstatus<CR>
-endif
-
 " Required by Vundle, plugins must be added before this line.
 call vundle#end()
 filetype plugin indent on
