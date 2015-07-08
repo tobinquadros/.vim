@@ -41,10 +41,10 @@ if executable("ctags")
   Plugin 'majutsushi/tagbar'
   " Command for quick open and close upon selection.
   nnoremap <Leader>tb :TagbarOpenAutoClose<CR>
-  " ctags search order: current buffer dir, current working dir, system libraries
-  set tags=./tags,tags,$HOME/.vim/systags;
-  " Run ctags over cwd recursively, specify tags file with -f /path/to/tags
-  nnoremap <Leader>ct :!ctags -R .
+  " ctags search order
+  set tags=./.git/tags,./tags,tags
+  " Run ctags over cwd recursively, place tags file in .git/ directory.
+  nnoremap <Leader>ct :!ctags -R --tag-relative --exclude=.git -f .git/tags<CR><CR>
 endif
 
 " VIMUX PLUGIN + CONFIG
