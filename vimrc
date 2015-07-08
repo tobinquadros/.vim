@@ -234,23 +234,3 @@ function! StripWhitespace()
 endfunction
 nnoremap <Leader>ws :call StripWhitespace()<CR>
 
-" Toggle colorcolumn with filetype textwidth.
-function! ToggleColorColumn()
-  " If colorcolumn is off, turn it on
-  if empty(&colorcolumn)
-    " If colorcolumn is off and textwidth is not set then use colorcolumn=80
-    if empty(&textwidth)
-      echo "colorcolumn=80"
-      set colorcolumn=80
-    " If colorcolumn is off and textwidth is set the use colorcolumn=+1
-    else
-      echo "colorcolumn=+1 (" . (&textwidth + 1) . ")"
-      set colorcolumn=+1
-    endif
-  " If colorcolumn is on then turn it off
-  else
-    echo "colorcolumn="
-    set colorcolumn=
-  endif
-endfunction
-nnoremap <Leader>cc :call ToggleColorColumn()<CR>
