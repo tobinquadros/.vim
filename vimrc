@@ -179,7 +179,7 @@ endif
 " ==============================================================================
 
 " Delete current buffer.
-nnoremap <Leader>bd :bd<CR>
+nnoremap <Leader>bd :bdelete<CR>
 nnoremap <C-n> :bnext<CR>
 nnoremap <C-p> :bprevious<CR>
 
