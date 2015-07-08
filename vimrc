@@ -173,14 +173,12 @@ if has("autocmd")
     " Clear VIMRC autocmd group command list
     autocmd!
 
-    " Set FileTypes and syntax
+    " Set fileType custom behaviors
     autocmd BufRead,BufNewFile .jshintrc set filetype=javascript
     autocmd BufRead,BufNewFile *.jade set filetype=jade syntax=jade
-    autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-
-    " Set Filetype specific tab and spacing
+    autocmd BufRead,BufNewFile *.md set filetype=markdown
+    autocmd BufRead,BufNewFile *.py inoremap # X<c-h>#
     autocmd FileType text setlocal textwidth=79
-    autocmd BufRead *.py inoremap # X<c-h>#
 
     " Restore cursor position from last session
     autocmd BufReadPost *
@@ -206,10 +204,9 @@ nnoremap <C-p> :bprevious<CR>
 nnoremap <Leader>cw :cwindow<CR>
 nnoremap <Leader>ccl :cclose<CR>
 nnoremap <Leader>cn :cnext<CR>
-nnoremap <Leader>cN :cNext<CR>
 nnoremap <Leader>cp :cprevious<CR>
 
-" Enter netrw
+" Netrw
 nnoremap <Leader>e. :edit .<CR>
 nnoremap <Leader>E :Explore<CR>
 

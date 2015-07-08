@@ -1,4 +1,4 @@
-# .gitignore for Vim repository
+# .gitignore for .vim repository
 
 .netrwhist
 .netrwbook
