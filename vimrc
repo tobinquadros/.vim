@@ -27,7 +27,7 @@ Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
 
-" SYNTASTIC PLUGIN + CONFIG
+" Syntastic plugin + config
 Plugin 'scrooloose/syntastic'
 " Check syntax when file is opened
 let g:syntastic_check_on_open = 0
@@ -36,18 +36,14 @@ let g:syntastic_aggregate_errors = 1
 " Fix Explore conflict if needed.
 command! -nargs=* E Explore
 
-" TAGBAR PLUGIN + CONFIG
+" Tagbar plugin + config
 if executable("ctags")
   Plugin 'majutsushi/tagbar'
   " Command for quick open and close upon selection.
   nnoremap <Leader>tb :TagbarOpenAutoClose<CR>
-  " ctags search order
-  set tags=./.git/tags,./tags,tags
-  " Run ctags over cwd recursively, place tags file in .git/ directory.
-  nnoremap <Leader>ct :!ctags -R --tag-relative --exclude=.git -f .git/tags<CR><CR>
 endif
 
-" VIMUX PLUGIN + CONFIG
+" Vimux plugin + config
 if executable("tmux")
   Plugin 'benmills/vimux'
   " Prompt to run any shell command.
@@ -56,7 +52,7 @@ if executable("tmux")
   nnoremap <Leader>vl :VimuxRunLastCommand<CR>
 endif
 
-" VIM-AIRLINE PLUGIN + CONFIG
+" Vim-airline plugin + config
 Plugin 'bling/vim-airline'
 " Only show filenames in the tab bar at the top of window.
 let g:airline#extensions#tabline#fnamemod = ':t'
