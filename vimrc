@@ -131,7 +131,6 @@ set wildignore+=*.jpg,*.jpeg,*.gif,*.png,*.gif,*.psd,*.wav,*.aiff,*.aif,*.mp3,*.
 
 " Registers and history
 set history=1000 " Save last 1000 commands from command line
-set pastetoggle=<F3> " Configure pastemode for external copy and paste
 
 " Buffers
 set autoread " Outside changes will be loaded
