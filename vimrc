@@ -207,10 +207,6 @@ nnoremap <Leader>sw :w !sudo tee % > /dev/null
 " Make current file executable.
 nnoremap <Leader>x :!chmod +x %
 
-" Insert divider for commenting
-nnoremap <Leader>#= i#<SPACE><SPACE><ESC>78i=<ESC>lx
-nnoremap <Leader>/= i//<SPACE><SPACE><ESC>77i=<ESC>lx
-
 " Search and replace word under cursor.
 nnoremap <Leader>* :%s/\<<C-r><C-w>\>//gc<LEFT><LEFT><LEFT>
 
