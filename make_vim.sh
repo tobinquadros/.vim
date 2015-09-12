@@ -58,6 +58,11 @@ function handle_plugins() {
   # Run the Vundle plugin clean, update, and install
   vim '+PluginClean!' +qall
   vim '+PluginInstall!' +qall
+
+  # Setup for YouCompleteMe
+  brew install cmake
+  cd ~/.vim/bundle/YouCompleteMe && ./install.py --clang-completer --gocode-completer
+  cd -
 }
 
 # ==============================================================================
