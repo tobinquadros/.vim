@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# make_vim.sh
 
 # Installs and upgrades Vim, .vim directory, vimrc, and plugin submodules.
 
@@ -48,7 +47,7 @@ function handle_plugins() {
   mkdir -p $DIR/bundle
 
   # Clone or pull down updates for Vundle.vim plugin.
-  if [ -d "$DIR/bundle/Vundle.vim" ]; then
+  if [[ -d "$DIR/bundle/Vundle.vim" ]]; then
     cd $DIR/bundle/Vundle.vim/
     (git pull origin master && (cd - > /dev/null)) || (echo "Vundle update failed."; exit 1)
   else
@@ -70,20 +69,22 @@ function handle_plugins() {
 # ==============================================================================
 
 # Pretty crappy but it works for now.
-if [ -x $(which brew) ]; then
+if [[ -x $(which brew) ]]; then
   install_thru_brew
-elif [ -x $(which apt-get) ]; then
+elif [[ -x $(which apt-get) ]]; then
   install_thru_apt
-elif [ -x $(which yum) ]; then
+elif [[ -x $(which yum) ]]; then
   install_thru_yum
-elif [ $(uname) = "MINGW32"* ]; then
+elif [[ $(uname) = "MINGW32"* ]]; then
   echo "You seem to be running Windows, please see the README.md"; echo ""
 else
   echo "Your system's package manager may not be supported, or you need to install Homebrew."
+  echo "Exiting"
+  exit 1
 fi
 
 # Check if plugins should be ignored.
-if [ "$1" = "--no-plugins" ]; then
+if [[ "$1" = "--no-plugins" ]]; then
   echo "Skipping Vundle plugin installations and updates."
 else
   handle_plugins
