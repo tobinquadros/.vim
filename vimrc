@@ -28,6 +28,7 @@ Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'fatih/vim-go'
 
 " Syntastic plugin + config
 Plugin 'scrooloose/syntastic'
