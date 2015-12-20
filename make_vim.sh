@@ -15,9 +15,9 @@
 # For MacOSX with Hombrew available.
 function install_thru_brew() {
   # Install Vim
-  brew install vim
+  brew install vim || brew upgrade vim
   # Install ctags
-  brew install ctags
+  brew install ctags || brew upgrade ctags
 
   # Install NeoVim for shits and gigs
   brew tap neovim/neovim
