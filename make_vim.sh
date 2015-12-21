@@ -9,9 +9,9 @@
 # For MacOSX with Hombrew available.
 function install_thru_brew() {
   # Install Vim
-  brew install vim || brew upgrade vim
+  brew install vim || brew upgrade --cleanup vim
   # Install ctags
-  brew install ctags || brew upgrade ctags
+  brew install ctags || brew upgrade --cleanup ctags
 }
 
 # For APT managed systems.
@@ -50,7 +50,7 @@ function handle_plugins() {
   vim '+PluginInstall!' +qall
 
   # Setup for YouCompleteMe
-  brew install cmake
+  brew install cmake || brew upgrade --cleanup cmake
   cd ~/.vim/bundle/YouCompleteMe && ./install.py --clang-completer --gocode-completer
   cd -
 }
