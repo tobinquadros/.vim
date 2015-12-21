@@ -28,7 +28,6 @@ Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'fatih/vim-go'
 
 " Syntastic plugin + config
 Plugin 'scrooloose/syntastic'
@@ -36,6 +35,9 @@ Plugin 'scrooloose/syntastic'
 let g:syntastic_check_on_open = 0
 " Allow multiple checkers per file
 let g:syntastic_aggregate_errors = 1
+" Prevent slow speeds while using vim-go
+let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 " Fix Explore conflict if needed.
 command! -nargs=* E Explore
 
@@ -68,13 +70,10 @@ if executable("git")
   nnoremap <Leader>gs :Gstatus<CR>
 endif
 
-" Ultisnips plugin + config, and snippets
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-" Trigger configuration, <tab> conflicts with YCM
-let g:UltiSnipsExpandTrigger="<c-l>"
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
+" Vim-go plugin + config
+Plugin 'fatih/vim-go'
+" Prevents the preview window from showing Go function info
+set completeopt=menu
 
 " Required by Vundle, plugins must be added before this line.
 call vundle#end()
