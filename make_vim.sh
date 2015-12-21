@@ -2,12 +2,6 @@
 
 # Installs and upgrades Vim, .vim directory, vimrc, and plugin submodules.
 
-# Exuberant CTags:
-#   System tool that indexes code for 40+ different languages.
-#   To recursively index current directory use <leader>ct
-#   To index the system libraries use <leader>sct
-#   Run :help Exuberant_ctags in Vim for info.
-
 # ==============================================================================
 # Function Definitions
 # ==============================================================================
