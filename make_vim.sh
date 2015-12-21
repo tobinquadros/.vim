@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Installs and upgrades Vim, .vim directory, vimrc, and plugin submodules.
+# Installs and upgrades Vim and plugins
 
 # ==============================================================================
 # Function Definitions
@@ -8,25 +8,20 @@
 
 # For MacOSX with Hombrew available.
 function install_thru_brew() {
-  # Install Vim
+  brew update
   brew install vim || brew upgrade --cleanup vim
-  # Install ctags
   brew install ctags || brew upgrade --cleanup ctags
 }
 
 # For APT managed systems.
 function install_thru_apt() {
-  # Install Vim
   sudo apt-get install -y vim
-  # Install ctags
   sudo apt-get install -y exuberant-ctags
 }
 
 # For yum managed systems.
 function install_thru_yum() {
-  # Install Vim
   sudo yum install -y vim
-  # Install ctags
   sudo yum install -y ctags
 }
 
