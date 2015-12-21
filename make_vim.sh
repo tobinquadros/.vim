@@ -18,10 +18,6 @@ function install_thru_brew() {
   brew install vim || brew upgrade vim
   # Install ctags
   brew install ctags || brew upgrade ctags
-
-  # Install NeoVim for shits and gigs
-  brew tap neovim/neovim
-  brew install --HEAD neovim
 }
 
 # For APT managed systems.
@@ -48,6 +44,7 @@ function handle_plugins() {
 
   # Clone or pull down updates for Vundle.vim plugin.
   if [[ -d "$DIR/bundle/Vundle.vim" ]]; then
+    echo "Updating Vundle..."
     cd $DIR/bundle/Vundle.vim/
     (git pull origin master && (cd - > /dev/null)) || (echo "Vundle update failed."; exit 1)
   else
