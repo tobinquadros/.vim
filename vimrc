@@ -73,6 +73,12 @@ endif
 Plugin 'fatih/vim-go'
 " Prevents the preview window from showing Go function info
 set completeopt=menu
+" Maximize syntax highlighting
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
 
 " Required by Vundle, plugins must be added before this line.
 call vundle#end()
