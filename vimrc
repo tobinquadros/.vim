@@ -208,6 +208,7 @@ nnoremap <Leader>cp :cprevious<CR>
 " Netrw
 nnoremap <Leader>e. :edit .<CR>
 nnoremap <Leader>E :Explore<CR>
+nnoremap <Leader>L :Lexplore<CR>
 
 " Edit vimrc file, source vimrc
 nnoremap <Leader>ev :edit $MYVIMRC<CR>
