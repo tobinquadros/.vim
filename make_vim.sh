@@ -46,7 +46,7 @@ function update_binaries() {
 
   # Setup for YouCompleteMe (requires YCM plugin)
   brew install cmake || brew upgrade --cleanup cmake
-  cd ~/.vim/bundle/YouCompleteMe && ./install.py --clang-completer --gocode-completer
+  cd ~/.vim/bundle/YouCompleteMe && ./install.py --clang-completer
   cd -
 }
 

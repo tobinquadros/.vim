@@ -34,9 +34,10 @@ Plugin 'scrooloose/syntastic'
 let g:syntastic_check_on_open = 0
 " Allow multiple checkers per file
 let g:syntastic_aggregate_errors = 1
-" Prevent slow speeds while using vim-go
+" Prevent slow speeds and issues while using vim-go
 let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+let g:go_list_type = "quickfix"
 " Fix Explore conflict if needed.
 command! -nargs=* E Explore
 
@@ -80,6 +81,15 @@ let g:go_highlight_structs = 1
 let g:go_highlight_interfaces = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
+" let g:go_fmt_command = "goimports"
+" See :h go-mappings and :h go-commands for more info
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>c <Plug>(go-coverage)
+au FileType go nmap <Leader>s <Plug>(go-implements)
+au FileType go nmap <Leader>gt <Plug>(go-info)
+au FileType go nmap <Leader>e <Plug>(go-rename)
 
 " Required by Vundle, plugins must be added before this line.
 call vundle#end()
