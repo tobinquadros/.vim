@@ -75,12 +75,11 @@ Plugin 'fatih/vim-go'
 " Prevents the preview window from showing Go function info
 set completeopt=menu
 " Maximize syntax highlighting
+let g:go_highlight_build_constraints = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_interfaces = 1
 let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
+let g:go_highlight_types = 1
 " let g:go_fmt_command = "goimports"
 " See :h go-mappings and :h go-commands for more info
 au FileType go nmap <leader>r <Plug>(go-run)
