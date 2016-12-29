@@ -36,6 +36,12 @@ function install_thru_brew() {
 
   brew tap neovim/neovim
   brew install neovim || brew upgrade --cleanup neovim
+  mkdir -p ~/.config/nvim
+  cp -R -f $HOME/.vim/ $HOME/.config/nvim
+  cp -f vimrc $HOME/.config/nvim/init.vim
+  pip2 install --upgrade neovim
+  pip3 install --upgrade neovim
+  gem install neovim
 }
 
 # Additional binaries are required for some plugins, unfortunately
