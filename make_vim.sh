@@ -33,6 +33,9 @@ function install_thru_brew() {
   brew update
   brew install vim || brew upgrade --cleanup vim
   brew install ctags || brew upgrade --cleanup ctags
+
+  brew tap neovim/neovim
+  brew install neovim || brew upgrade --cleanup neovim
 }
 
 # Additional binaries are required for some plugins, unfortunately
