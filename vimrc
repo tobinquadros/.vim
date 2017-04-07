@@ -28,6 +28,9 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'Valloric/YouCompleteMe'
 
+" Jenkinsfile syntax highlighting
+Plugin 'martinda/Jenkinsfile-vim-syntax'
+
 " Syntastic plugin + config
 Plugin 'scrooloose/syntastic'
 " Check syntax when file is opened
