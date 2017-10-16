@@ -34,7 +34,6 @@ function install_thru_brew() {
   brew install vim || brew upgrade --cleanup vim
   brew install ctags || brew upgrade --cleanup ctags
 
-  brew tap neovim/neovim
   brew install neovim || brew upgrade --cleanup neovim
   mkdir -p ~/.config/nvim
   cp -R -f $HOME/.vim/ $HOME/.config/nvim

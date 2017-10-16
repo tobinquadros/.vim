@@ -31,6 +31,9 @@ Plugin 'Valloric/YouCompleteMe'
 " Jenkinsfile syntax highlighting
 Plugin 'martinda/Jenkinsfile-vim-syntax'
 
+" Jinja syntax
+Plugin 'lepture/vim-jinja'
+
 " Syntastic plugin + config
 Plugin 'scrooloose/syntastic'
 " Check syntax when file is opened
