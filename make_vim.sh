@@ -38,7 +38,7 @@ function install_thru_brew() {
   mkdir -p ~/.config/nvim
   cp -R -f $HOME/.vim/ $HOME/.config/nvim
   cp -f vimrc $HOME/.config/nvim/init.vim
-  pip install --upgrade neovim
+  pip install --upgrade neovim flake8
   gem install neovim
 }
 
