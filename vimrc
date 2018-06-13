@@ -22,6 +22,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " Plugins that don't have special configuration
+Plugin 'PProvost/vim-ps1'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
