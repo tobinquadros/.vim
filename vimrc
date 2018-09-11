@@ -28,11 +28,7 @@ Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'Valloric/YouCompleteMe'
-
-" Jenkinsfile syntax highlighting
 Plugin 'martinda/Jenkinsfile-vim-syntax'
-
-" Jinja syntax
 Plugin 'lepture/vim-jinja'
 
 " Syntastic plugin + config
@@ -76,26 +72,6 @@ if executable("git")
   Plugin 'tpope/vim-fugitive'
   nnoremap <Leader>gs :Gstatus<CR>
 endif
-
-" Vim-go plugin + config
-Plugin 'fatih/vim-go'
-" Prevents the preview window from showing Go function info
-set completeopt=menu
-" Maximize syntax highlighting
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_types = 1
-" let g:go_fmt_command = "goimports"
-" See :h go-mappings and :h go-commands for more info
-au FileType go nmap <leader>r <Plug>(go-run)
-au FileType go nmap <leader>b <Plug>(go-build)
-au FileType go nmap <leader>t <Plug>(go-test)
-au FileType go nmap <leader>c <Plug>(go-coverage)
-au FileType go nmap <Leader>s <Plug>(go-implements)
-au FileType go nmap <Leader>gt <Plug>(go-info)
-au FileType go nmap <Leader>e <Plug>(go-rename)
 
 " Required by Vundle, plugins must be added before this line.
 call vundle#end()

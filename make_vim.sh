@@ -28,24 +28,11 @@ function handle_plugins() {
   vim '+PluginInstall!' +qall
 }
 
-# For MacOSX with Hombrew available.
-function install_thru_brew() {
-  brew update
-  brew install vim || brew upgrade --cleanup vim
-  brew install ctags || brew upgrade --cleanup ctags
-}
-
 # Additional binaries are required for some plugins, unfortunately
 function update_binaries() {
   echo "Running update_binaries()..."
 
-  # Update the Vim-go binaries (requires vim-go plugin)
-  if [[ -n $GOPATH ]]; then
-    vim '+GoUpdateBinaries' +qall
-  fi
-
   # Setup for YouCompleteMe (requires YCM plugin)
-  brew install cmake || brew upgrade --cleanup cmake
   cd ~/.vim/bundle/YouCompleteMe && ./install.py --clang-completer
   cd -
 }
@@ -53,8 +40,6 @@ function update_binaries() {
 # ==============================================================================
 # Main
 # ==============================================================================
-
-install_thru_brew
 
 # Check if plugins should be ignored.
 if [[ "$@" =~ "--no-plugins" ]]; then
