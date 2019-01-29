@@ -1,7 +1,6 @@
-# .gitignore for .vim repository
-
-.netrwhist
 .netrwbook
-tags
-systags
+.netrwhist
+black/
 bundle/
+systags
+tags

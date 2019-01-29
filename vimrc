@@ -22,6 +22,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " Plugins that don't have special configuration
+Plugin 'ambv/black'
 Plugin 'PProvost/vim-ps1'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-repeat'
@@ -37,10 +38,6 @@ Plugin 'scrooloose/syntastic'
 let g:syntastic_check_on_open = 0
 " Allow multiple checkers per file
 let g:syntastic_aggregate_errors = 1
-" Prevent slow speeds and issues while using vim-go
-let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
-let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
-let g:go_list_type = "quickfix"
 " Fix Explore conflict if needed.
 command! -nargs=* E Explore
 
@@ -172,6 +169,9 @@ if has("autocmd")
     autocmd BufRead,BufNewFile *.md set filetype=markdown
     autocmd BufRead,BufNewFile *.py inoremap # X<c-h>#
     autocmd FileType text setlocal textwidth=79
+
+    " Format Python code with Black on save
+    autocmd BufWritePre *.py execute ':Black'
 
     " Restore cursor position from last session
     autocmd BufReadPost *
