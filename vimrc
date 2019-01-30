@@ -22,7 +22,6 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " Plugins that don't have special configuration
-Plugin 'ambv/black'
 Plugin 'PProvost/vim-ps1'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-repeat'
@@ -31,6 +30,34 @@ Plugin 'tpope/vim-unimpaired'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'martinda/Jenkinsfile-vim-syntax'
 Plugin 'lepture/vim-jinja'
+
+" Black plugin + config
+Plugin 'ambv/black'
+function! BlackEnable()
+  " Setup Black autocmd
+  if has("autocmd")
+    " Enter augroup
+    augroup BLACK
+      " Clear autocmd group command list for current buffer
+      autocmd! * <buffer>
+      " Format Python code with Black on save
+      autocmd BLACK BufWritePre <buffer> execute ':Black'
+    " Exit augroup
+    augroup end
+  endif
+endfunction
+nnoremap <Leader>be :call BlackEnable()<CR>
+function! BlackDisable()
+  " Setup Black autocmd
+  if has("autocmd")
+    " Enter augroup
+    augroup BLACK
+      " Clear autocmd group command list for current buffer
+      autocmd! * <buffer>
+    " Exit augroup
+    augroup end
+  endif
+endfunction
 
 " Syntastic plugin + config
 Plugin 'scrooloose/syntastic'
@@ -170,9 +197,6 @@ if has("autocmd")
     autocmd BufRead,BufNewFile *.py inoremap # X<c-h>#
     autocmd FileType text setlocal textwidth=79
 
-    " Format Python code with Black on save
-    autocmd BufWritePre *.py execute ':Black'
-
     " Restore cursor position from last session
     autocmd BufReadPost *
       \ if line("'\"") > 1 && line("'\"") <= line("$") |
@@ -233,11 +257,11 @@ cnoremap <C-n> <Down>
 
 " Strip trailing whitespace from lines.
 function! StripWhitespace()
-    let save_cursor = getpos(".")
-    let old_query = getreg('/')
-    :%s/\s\+$//e
-    call setpos('.', save_cursor)
-    call setreg('/', old_query)
+  let save_cursor = getpos(".")
+  let old_query = getreg('/')
+  :%s/\s\+$//e
+  call setpos('.', save_cursor)
+  call setreg('/', old_query)
 endfunction
 nnoremap <Leader>ws :call StripWhitespace()<CR>
 
