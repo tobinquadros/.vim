@@ -27,7 +27,6 @@ Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
-Plugin 'Valloric/YouCompleteMe'
 Plugin 'martinda/Jenkinsfile-vim-syntax'
 Plugin 'lepture/vim-jinja'
 
@@ -96,6 +95,11 @@ if executable("git")
   Plugin 'tpope/vim-fugitive'
   nnoremap <Leader>gs :Gstatus<CR>
 endif
+
+" YouCompleteMe plugin + config
+Plugin 'Valloric/YouCompleteMe'
+set completeopt-=preview
+let g:ycm_add_preview_to_completeopt = 0
 
 " Required by Vundle, plugins must be added before this line.
 call vundle#end()
